@@ -2757,26 +2757,24 @@ document.getElementById('apply-form')?.addEventListener('submit', async function
   btn.disabled = true;
   const data = Object.fromEntries(new FormData(form).entries());
   data.seriousness = document.getElementById('serious-slider')?.value || 5;
-  const TYPEFORM_FORM_ID = 'YOUR_FORM_ID_HERE';
-  const TYPEFORM_TOKEN   = 'YOUR_TOKEN_HERE';
   const payload = {
     answers: [
-      { field: { ref: 'name' },       type: 'text',   text: data.name },
-      { field: { ref: 'email' },      type: 'email',  email: data.email },
-      { field: { ref: 'age' },        type: 'number', number: +data.age },
-      { field: { ref: 'occupation' }, type: 'text',   text: data.occupation },
-      { field: { ref: 'employment' }, type: 'choice', choice: { label: data.employment } },
-      { field: { ref: 'why' },        type: 'text',   text: data.why },
-      { field: { ref: 'skills' },     type: 'text',   text: data.skills },
-      { field: { ref: 'physique' },   type: 'text',   text: data.physique },
-      { field: { ref: 'seriousness' },type: 'number', number: +data.seriousness },
-      { field: { ref: 'commitment' }, type: 'choice', choice: { label: data.commitment } },
+      { field: { ref: 'name' },        type: 'text',   text: data.name },
+      { field: { ref: 'email' },       type: 'email',  email: data.email },
+      { field: { ref: 'age' },         type: 'number', number: +data.age },
+      { field: { ref: 'occupation' },  type: 'text',   text: data.occupation },
+      { field: { ref: 'employment' },  type: 'choice', choice: { label: data.employment } },
+      { field: { ref: 'why' },         type: 'text',   text: data.why },
+      { field: { ref: 'skills' },      type: 'text',   text: data.skills },
+      { field: { ref: 'physique' },    type: 'text',   text: data.physique },
+      { field: { ref: 'seriousness' }, type: 'number', number: +data.seriousness },
+      { field: { ref: 'commitment' },  type: 'choice', choice: { label: data.commitment } },
     ]
   };
   try {
-    const res = await fetch(`https://api.typeform.com/forms/${TYPEFORM_FORM_ID}/responses`, {
+    const res = await fetch('http://localhost:3000/api/typeform/submit?formId=IeHZ2FIw', {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${TYPEFORM_TOKEN}`, 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
     if (res.ok) {
@@ -2793,15 +2791,6 @@ document.getElementById('apply-form')?.addEventListener('submit', async function
     btn.disabled = false;
   }
 });
-
-function showFeedback(msg, success) {
-  const fb = document.getElementById('form-feedback');
-  fb.textContent = msg;
-  fb.style.color = success ? 'var(--green)' : 'var(--red)';
-  fb.style.display = 'block';
-  fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-</script>
 
 
 <script>

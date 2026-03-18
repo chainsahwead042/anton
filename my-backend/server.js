@@ -75,3 +75,26 @@ app.listen(PORT, () => {
     console.log(`✅ Backend is running on port ${PORT}`);
     console.log(`🔒 Secrets are loaded and protected.`);
 });
+// --- TYPEFORM SUBMIT ROUTE ---
+app.post('/api/typeform/submit', async (req, res) => {
+    const { formId } = req.query;
+    if (!formId) return res.status(400).json({ error: 'Missing formId' });
+    if (!process.env.TYPEFORM_TOKEN) return res.status(500).json({ error: 'Typeform token not configured' });
+
+    try {
+        const response = await axios.post(
+            `https://api.typeform.com/forms/${formId}/responses`,
+            req.body,
+            {
+                headers: {
+                    'Authorization': `Bearer ${process.env.TYPEFORM_TOKEN}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        res.json(response.data);
+    } catch (error) {
+        console.error('Typeform submit error:', error.message);
+        res.status(500).json({ error: 'Error submitting to Typeform' });
+    }
+});
