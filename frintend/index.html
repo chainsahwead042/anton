@@ -2765,7 +2765,7 @@ document.getElementById('apply-form')?.addEventListener('submit', async function
   btn.disabled = true;
   const data = Object.fromEntries(new FormData(form).entries());
   data.seriousness = document.getElementById('serious-slider')?.value || 5;
-  const TYPEFORM_FORM_ID = 'IeHZ2FIw';
+  const TYPEFORM_FORM_ID = 'JlDful3L';
   const payload = {
     answers: [
       { field: { ref: 'name' },       type: 'text',   text: data.name },
@@ -2781,7 +2781,7 @@ document.getElementById('apply-form')?.addEventListener('submit', async function
     ]
   };
   try {
-const res = await fetch('(https://antonthnx.com/api/typeform/submit?formId=IeHZ2FIw', {
+const res = await fetch('(https://antonthnx.com/api/typeform/submit?formId=JlDful3L', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(data),
