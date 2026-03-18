@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against vercel",
-            "url": "https://anton-phi.vercel.app/",
+            "url": "https://antonthnx.com/",
             "webRoot": "${workspaceFolder}"
         }
     ]
