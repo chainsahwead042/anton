@@ -5,7 +5,7 @@ const axios = require('axios');
 const app = express();
 
 // --- MIDDLEWARE & VALIDATION ---
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:5500';
+const allowedOrigin = process.env.ALLOWED_ORIGIN || 'https://anton-phi.vercel.app/';
 app.use(cors({ origin: allowedOrigin }));
 app.use(express.json());
 
@@ -61,5 +61,5 @@ app.post('/api/typeform/submit', async (req, res) => {
 // --- START SERVER (Always keep this at the bottom) ---
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
+    console.log(`✅ Server running on https://anton-phi.vercel.app/`);
 });
