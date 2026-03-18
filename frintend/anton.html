@@ -2758,8 +2758,7 @@ document.getElementById('apply-form')?.addEventListener('submit', async function
   btn.disabled = true;
   const data = Object.fromEntries(new FormData(form).entries());
   data.seriousness = document.getElementById('serious-slider')?.value || 5;
-  const TYPEFORM_FORM_ID = 'YOUR_FORM_ID_HERE';
-  const TYPEFORM_TOKEN   = 'YOUR_TOKEN_HERE';
+  const TYPEFORM_FORM_ID = 'IeHZ2FIw';
   const payload = {
     answers: [
       { field: { ref: 'name' },       type: 'text',   text: data.name },
@@ -2775,11 +2774,11 @@ document.getElementById('apply-form')?.addEventListener('submit', async function
     ]
   };
   try {
-    const res = await fetch(`https://api.typeform.com/forms/${TYPEFORM_FORM_ID}/responses`, {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${TYPEFORM_TOKEN}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+const res = await fetch('(http://localhost:3000/api/typeform/submit?formId=IeHZ2FIw', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data),
+});
     if (res.ok) {
       showFeedback('✓ APPLICATION RECEIVED — ANTON WILL BE IN TOUCH WITHIN 48 HOURS.', true);
       form.reset();
