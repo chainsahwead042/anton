@@ -1393,49 +1393,72 @@
   }
 
   /* ── Horizontal scroll testimonials ── */
-  .tscroll-track {
-    position: relative;
-    margin-top: 32px;
-  }
+.tscroll-track {
+  position: relative;
+  margin-top: 32px;
+  overflow: hidden; /* important */
+}
 
-  .tscroll-inner {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 16px 60px 32px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    cursor: grab;
-  }
+.tscroll-inner {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 16px 60px 32px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
 
-  .tscroll-inner::-webkit-scrollbar { display: none; }
-  .tscroll-inner:active { cursor: grabbing; }
+.tscroll-inner::-webkit-scrollbar { display: none; }
+.tscroll-inner:active { cursor: grabbing; }
 
-  .tscroll-inner .tvcard {
-    flex: 0 0 220px;
-    scroll-snap-align: start;
-  }
+.tscroll-inner .tvcard {
+  flex: 0 0 220px;
+}
 
-  .tscroll-fade-left,
-  .tscroll-fade-right {
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 80px;
-    pointer-events: none;
-    z-index: 2;
-  }
+/* fades stay same */
+.tscroll-fade-left,
+.tscroll-fade-right {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+}
 
-  .tscroll-fade-left {
-    left: 0;
-    background: linear-gradient(to right, var(--bg), transparent);
-  }
+.tscroll-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
 
-  .tscroll-fade-right {
-    right: 0;
-    background: linear-gradient(to left, var(--bg), transparent);
+.tscroll-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+
+<script>
+const scroll = document.querySelector('.tscroll-inner');
+
+// 1. duplicate content
+scroll.innerHTML += scroll.innerHTML;
+
+// 2. start from middle (prevents jump at start)
+const half = scroll.scrollWidth / 2;
+scroll.scrollLeft = half / 2;
+
+// 3. infinite loop logic
+scroll.addEventListener('scroll', () => {
+  const maxScroll = scroll.scrollWidth / 2;
+
+  if (scroll.scrollLeft >= maxScroll) {
+    scroll.scrollLeft -= maxScroll;
+  } else if (scroll.scrollLeft <= 0) {
+    scroll.scrollLeft += maxScroll;
   }
+});
+</script>
 
   /* ── Scroll hint ── */
   .scroll-hint {
@@ -2981,6 +3004,25 @@ function showFeedback(msg, success) {
       slider.classList.toggle('revealed');
     });
   });
+</script>
+
+<script>
+const scroll = document.querySelector('.tscroll-inner');
+
+scroll.innerHTML += scroll.innerHTML;
+
+const half = scroll.scrollWidth / 2;
+scroll.scrollLeft = half / 2;
+
+scroll.addEventListener('scroll', () => {
+  const maxScroll = scroll.scrollWidth / 2;
+
+  if (scroll.scrollLeft >= maxScroll) {
+    scroll.scrollLeft -= maxScroll;
+  } else if (scroll.scrollLeft <= 0) {
+    scroll.scrollLeft += maxScroll;
+  }
+});
 </script>
 
 </body>
