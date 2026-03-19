@@ -655,6 +655,11 @@
 
   .coach-content .section-label { margin-bottom: 16px; }
 
+  .coach-info-stack {
+    display: flex;
+    flex-direction: column;
+  }
+
   .coach-stat-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 12px; margin: 32px 0;
@@ -1639,7 +1644,9 @@
     nav { padding: 16px 24px; }
     .section { padding: 60px 24px; }
     .cta-banner { padding: 60px 24px; }
-    #coach { grid-template-columns: 1fr; }
+    #coach { grid-template-columns: 1fr; gap: 32px; }
+    .coach-info-stack { order: 1; }
+    #coach > .result-card { order: 2; }
     .system-grid { grid-template-columns: 1fr; }
     .results-grid { grid-template-columns: 1fr 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
@@ -2229,8 +2236,34 @@
 
   <div style="max-width:1200px; margin: 0 auto; position:relative; z-index:1;">
 
-<div id="coach" class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
-  
+<div id="coach" class="reveal">
+  <div class="coach-info-stack">
+    <div class="coach-content">
+      <div class="section-label">THE COACH</div>
+      <h2 class="section-title">MEET ANTON.</h2>
+      <p class="section-subtitle">6'2". 190lbs. He disagreed.</p>
+    </div>
+
+    <div class="coach-stat-grid">
+      <div class="coach-stat">
+        <div class="cs-num">5+</div>
+        <div class="cs-label">YEARS TRAINING</div>
+      </div>
+      <div class="coach-stat">
+        <div class="cs-num">2+</div>
+        <div class="cs-label">YEARS FULL-TIME COACHING</div>
+      </div>
+      <div class="coach-stat">
+        <div class="cs-num">6 FT</div>
+        <div class="cs-label">Over 6 Ft Tall</div>
+      </div>
+      <div class="coach-stat">
+        <div class="cs-num">150+</div>
+        <div class="cs-label">ATHLETES TRANSFORMED</div>
+      </div>
+    </div>
+  </div>
+
   <div class="result-card">
     <div class="ba-slider" data-name="ANTON">
       <div class="ba-after">
@@ -2245,32 +2278,7 @@
       </button>
     </div>
   </div>
-
-  <div class="coach-content">
-    <div class="section-label">THE COACH</div>
-    <h2 class="section-title">MEET ANTON.</h2>
-    <p class="section-subtitle">6'2". 190lbs. He disagreed.</p>
-    </div>
 </div>
-
-        <div class="coach-stat-grid">
-          <div class="coach-stat">
-            <div class="cs-num">5+</div>
-            <div class="cs-label">YEARS TRAINING</div>
-          </div>
-          <div class="coach-stat">
-            <div class="cs-num">2+</div>
-            <div class="cs-label">YEARS FULL-TIME COACHING</div>
-          </div>
-          <div class="coach-stat">
-            <div class="cs-num">6 FT</div>
-            <div class="cs-label">Over 6 Ft Tall</div>
-          </div>
-          <div class="coach-stat">
-            <div class="cs-num">150+</div>
-            <div class="cs-label">ATHLETES TRANSFORMED</div>
-          </div>
-        </div>
       
 <section class="submax-intro-section">
   <div class="submax-intro-wrap reveal">
