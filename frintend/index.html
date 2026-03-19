@@ -1261,10 +1261,13 @@
   .ba-before { z-index: 2; transform: translateX(0); }
 
   .ba-after  video,
-  .ba-before video {
+  .ba-before video,
+  .ba-after  img,
+  .ba-before img {
     width: 100%; height: 100%;
     object-fit: cover;
     pointer-events: none;
+    display: block;
   }
 
   /* Revealed state */
@@ -1308,6 +1311,25 @@
     font-size: 9px;
     opacity: 0.8;
   }
+
+  @media (max-width: 768px) {
+    .ba-toggle-btn {
+      bottom: 14px;
+      width: calc(100% - 28px);
+      max-width: 280px;
+      justify-content: center;
+      padding: 14px 20px;
+      font-size: 13px;
+      letter-spacing: 2.4px;
+      border-radius: 999px;
+      min-height: 52px;
+    }
+
+    .ba-toggle-icon {
+      font-size: 12px;
+    }
+  }
+
   .ba-slider.revealed .ba-toggle-btn .ba-toggle-text::before {
     content: 'SEE AFTER';
   }
@@ -2211,15 +2233,11 @@
   
   <div class="result-card">
     <div class="ba-slider" data-name="ANTON">
-      <div class="ba-after ba-video">
-        <video autoplay muted loop playsinline>
-          <source src="your-after-video.mp4" type="video/mp4">
-        </video>
+      <div class="ba-after">
+        <img src="anton.png" alt="Anton after">
       </div>
-      <div class="ba-before ba-video">
-        <video autoplay muted loop playsinline>
-          <source src="your-before-video.mp4" type="video/mp4">
-        </video>
+      <div class="ba-before">
+        <img src="anton.png" alt="Anton before">
       </div>
       <button class="ba-toggle-btn" type="button">
         <span class="ba-toggle-icon">&#9654;</span>
