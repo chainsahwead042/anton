@@ -3255,6 +3255,41 @@ function registerTestimonialCard(card) {
 
 document.querySelectorAll('.tvcard').forEach(registerTestimonialCard);
 
+// ─── Capture first frame as poster for testimonial scroll videos ───
+function captureFirstFrame(video) {
+  if (!video || video.dataset.posterCaptured === 'true') return;
+  function doCapture() {
+    if (video.readyState < 2) return;
+    try {
+      var canvas = document.createElement('canvas');
+      canvas.width  = video.videoWidth  || 360;
+      canvas.height = video.videoHeight || 640;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      var dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+      if (dataUrl && dataUrl !== 'data:,') {
+        video.poster = dataUrl;
+        video.dataset.posterCaptured = 'true';
+      }
+    } catch(e) {}
+  }
+  if (video.readyState >= 2) {
+    doCapture();
+  } else {
+    video.addEventListener('loadeddata', doCapture, { once: true });
+    video.addEventListener('canplay',    doCapture, { once: true });
+  }
+}
+
+document.querySelectorAll('.tscroll-track .tvcard-video').forEach(function(video) {
+  captureFirstFrame(video);
+});
+
+// Also capture first frame for the 4 main result-card ba-slider videos
+document.querySelectorAll('.results-grid .ba-video video').forEach(function(video) {
+  captureFirstFrame(video);
+});
+
 // ─── YT iframe show ───
 const ytIframe = document.getElementById('yt-iframe');
 if (ytIframe && ytIframe.src) {
@@ -3712,7 +3747,7 @@ function showFeedback(msg, success) {
   }
 
  function ensureMiniBaPlayButton(slider) {
-    if (!slider.classList.contains('results-mini-ba') && !slider.closest('.tscroll-inner')) return null;
+    if (!slider.classList.contains('results-mini-ba') && !slider.closest('.tscroll-inner') && !slider.closest('.results-grid')) return null;
     var existing = slider.querySelector('.results-mini-play-btn');
     if (existing) return existing;
 
