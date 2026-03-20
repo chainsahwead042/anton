@@ -2210,6 +2210,216 @@ content="anton.png"
 @media (max-width: 900px) {
   #page-progress-slider { display: none; }
 }
+
+/* ══════════════════════════════════════
+   MOBILE OVERHAUL — max-width: 600px
+══════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* ── Hero: fill the full screen, nothing peeking below ── */
+  #hero {
+    min-height: 100svh !important;
+    height: 100svh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 80px 24px 40px !important;
+    overflow: hidden !important;
+  }
+
+  #hero > div {
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* Big hero text — enlarged, fills screen width */
+  h1.hero-title {
+    font-size: clamp(52px, 16vw, 80px) !important;
+    line-height: 0.95 !important;
+    letter-spacing: 0.04em !important;
+    text-align: center !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
+  }
+
+  .hero-training-wrap {
+    display: block !important;
+    font-size: clamp(52px, 16vw, 80px) !important;
+  }
+
+  /* ── All sections: full viewport height, one at a time feel ── */
+  .full-section,
+  section {
+    min-height: auto !important;
+  }
+
+  /* ── Coach: stack vertically ── */
+  #coach {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  .coach-image-wrap {
+    width: 100% !important;
+  }
+
+  .coach-image {
+    width: 100% !important;
+    aspect-ratio: 3/4 !important;
+  }
+
+  .coach-content {
+    width: 100% !important;
+  }
+
+  /* ── Qualifier strip: 1 column ── */
+  .qualifier-strip {
+    grid-template-columns: 1fr !important;
+  }
+
+  .qual-item {
+    padding: 24px 20px !important;
+  }
+
+  .qual-title {
+    font-size: 13px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .qual-text {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+
+  /* ── System cards: 1 column ── */
+  .system-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .system-card {
+    padding: 24px 20px !important;
+  }
+
+  .sc-num {
+    font-size: 40px !important;
+  }
+
+  .sc-title {
+    font-size: 13px !important;
+  }
+
+  .sc-text {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+
+  /* ── Results grid: 1 column ── */
+  .results-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  /* ── Testimonials grid: 1 column ── */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .tcard {
+    padding: 24px 20px !important;
+  }
+
+  .tcard-text {
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+  }
+
+  /* ── Horizontal scroll cards: bigger ── */
+  .tscroll-inner .tvcard {
+    flex: 0 0 82vw !important;
+    scroll-snap-align: center !important;
+  }
+
+  .results-video-scroll .tvcard {
+    flex: 0 0 88vw !important;
+  }
+
+  /* ── Enlarge general text on mobile ── */
+  .section-title,
+  .video-title {
+    font-size: clamp(38px, 12vw, 60px) !important;
+    line-height: 1.0 !important;
+  }
+
+  .section-subtitle,
+  .video-sub,
+  .hero-sub {
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .coach-bio {
+    font-size: 15px !important;
+    line-height: 1.9 !important;
+  }
+
+  .hstat-num {
+    font-size: 44px !important;
+  }
+
+  .hstat-label {
+    font-size: 11px !important;
+    letter-spacing: 2px !important;
+  }
+
+  /* ── Submax cards: 1 column ── */
+  .submax-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .submax-card {
+    font-size: 14px !important;
+    line-height: 1.9 !important;
+    padding: 24px 20px !important;
+  }
+
+  /* ── Form: single column ── */
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Buttons: full width ── */
+  .btn-primary,
+  .btn-ghost,
+  .form-submit-btn {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 18px 24px !important;
+    font-size: 12px !important;
+  }
+
+  /* ── Section padding ── */
+  .section {
+    padding: 52px 20px !important;
+  }
+
+  /* ── Coach stat grid stays 2 col ── */
+  .coach-stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .cs-num {
+    font-size: 32px !important;
+  }
+
+  .cs-label {
+    font-size: 10px !important;
+  }
+}
 </style>
 
 </head>
@@ -3063,7 +3273,7 @@ content="anton.png"
       <div class="footer-sub-label">CONTACT</div>
       <a href="/cdn-cgi/l/email-protection#b3d2ddc7dcc0dbd29dd0d2dfdac0c7dbd6dddad0c0f3d4ded2dadf9dd0dcde" class="footer-link">
         <span class="footer-icon">✉</span>
-        <span class="__cf_email__" data-cfemail="71101f051e0219105f12101d18020519141f18120231161c10181d5f121e1c">[Antosha.calisthenics@gmail.com]</span>
+        <span class="__cf_email__" data-cfemail="71101f051e0219105f12101d18020519141f18120231161c10181d5f121e1c">[<span class="__cf_email__" data-cfemail="d293bca6bda1bab3fcb1b3bebba1a6bab7bcbbb1a192b5bfb3bbbefcb1bdbf">[email&#160;protected]</span>]</span>
       </a>
 <a href="https://www.instagram.com/antonthnx/" target="_blank" rel="noopener" class="footer-link">
   <span class="footer-icon">
@@ -3082,7 +3292,7 @@ content="anton.png"
       <div class="footer-sub-label">WEB DESIGN</div>
       <div class="footer-credit-name">Mughera Yasin</div>
       <a href="/cdn-cgi/l/email-protection#90f3e5f2f5f7f1fdf5e2a1a1a3d0f7fdf1f9fcbef3fffd" class="footer-link footer-credit-email">
-        <span class="__cf_email__" data-cfemail="c6a5b3a4a3a1a7aba3b4f7f7f586a1aba7afaae8a5a9ab"><span class="__cf_email__" data-cfemail="9cffe9fef9fbfdf1f9eeadadafdcfbf1fdf5f0b2fff3f1">[cubegamer113@gmail.com]</span></span>
+        <span class="__cf_email__" data-cfemail="c6a5b3a4a3a1a7aba3b4f7f7f586a1aba7afaae8a5a9ab"><span class="__cf_email__" data-cfemail="9cffe9fef9fbfdf1f9eeadadafdcfbf1fdf5f0b2fff3f1">[<span class="__cf_email__" data-cfemail="6e0d1b0c0b090f030b1c5f5f5d2e09030f0702400d0103">[email&#160;protected]</span>]</span></span>
       </a>
     </div>
   </div>
@@ -3091,7 +3301,7 @@ content="anton.png"
 <!-- ════════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── Cursor ───
 const cursor = document.getElementById('cursor');
 const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
@@ -3983,17 +4193,4 @@ document.querySelectorAll('.tvcard').forEach(card => {
       });
 
       // play this one
-      video.play();
-      btn.classList.add('is-playing');
-      btn.innerHTML = '<span class="tvcard-play-icon">❚❚</span> PAUSE';
-
-    } else {
-      video.pause();
-      btn.classList.remove('is-playing');
-      btn.innerHTML = '<span class="tvcard-play-icon">▶</span> PLAY';
-    }
-  });
-});
-</script>
-
-</html>
+      vide
