@@ -1744,26 +1744,225 @@ content="anton.png"
   }
 
   @media (max-width: 600px) {
+    body {
+      font-size: 16px;
+      background-size: 180px 180px;
+      background-position: center top;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 22px;
+      width: calc(100% - 24px);
+      top: 12px;
+      background: rgba(8, 8, 8, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.24);
+    }
+
+    .nav-brand {
+      text-align: center;
+      font-size: clamp(20px, 6vw, 28px);
+      letter-spacing: 1.4px;
+    }
+
+    #hero {
+      padding: 132px 20px 56px;
+      min-height: auto;
+    }
+
+    #hero > div {
+      text-align: left !important;
+    }
+
+    h1.hero-title {
+      font-size: clamp(42px, 14vw, 68px);
+      line-height: 0.92 !important;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .hero-training-wrap {
+      display: block;
+      margin-block: 8px 4px;
+    }
+
+    .section,
+    .cta-banner {
+      padding: 52px 20px;
+    }
+
+    .section-label {
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 2.2px;
+      margin-bottom: 18px;
+    }
+
+    .section-title,
+    .video-title {
+      font-size: clamp(36px, 11vw, 54px);
+      line-height: 0.98;
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+
+    .section-subtitle,
+    .video-sub,
+    .hero-sub {
+      font-size: 14px;
+      line-height: 1.75;
+      letter-spacing: 0.04em !important;
+      max-width: 100%;
+      text-align: left;
+    }
+
+    .video-wrap {
+      padding: 28px 20px;
+      border-radius: 24px;
+      box-shadow: 0 24px 54px rgba(0,0,0,0.26);
+    }
+
+    .video-label {
+      font-size: 10px;
+      letter-spacing: 2.2px;
+    }
+
+    .video-container {
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .hero-stats-row,
+    .cta-row,
+    .hero-proof,
+    .coach-cta-row {
+      gap: 14px;
+    }
+
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .hero-stat,
+    .result-card,
+    .system-card,
+    .testimonial-card,
+    .coach-info-stack,
+    .qualifier-item {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(18,18,18,0.98), rgba(7,7,7,0.98));
+      box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+    }
+
+    .result-card {
+      padding: 14px;
+      gap: 14px;
+    }
+
+    .result-info {
+      padding: 14px 4px 4px;
+    }
+
+    .result-name {
+      font-size: 22px;
+      letter-spacing: 2.2px;
+    }
+
+    .result-desc {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .ba-toggle-btn,
+    .hero-cta,
+    .secondary-cta,
+    .btn-primary,
+    .coach-cta-row a,
+    .coach-cta-row button {
+      width: 100%;
+      justify-content: center;
+      min-height: 52px;
+      font-size: 12px;
+      letter-spacing: 1.8px;
+    }
+
+    .nav-cta {
+      min-height: 48px;
+      padding-inline: 18px;
+      font-size: 10px;
+      letter-spacing: 1.6px;
+      text-align: center;
+    }
+
     .results-grid { grid-template-columns: 1fr; }
     .qualifier-strip { grid-template-columns: 1fr; }
+    .results-more-hint,
+    .results-video-scroll {
+      display: none;
+    }
 
     .tscroll-track {
       overflow: visible;
+      margin-inline: -4px;
     }
 
     .tscroll-inner {
-      gap: 14px;
-      padding: 12px 24px 24px;
+      gap: 18px;
+      padding: 14px 20px 28px;
       scroll-snap-type: x mandatory;
     }
 
     .tscroll-inner .tvcard {
-      flex: 0 0 82vw;
+      flex: 0 0 90vw;
       scroll-snap-align: center;
+      gap: 14px;
+    }
+
+    .tvcard {
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(18,18,18,0.98), rgba(7,7,7,0.98));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.32);
+    }
+
+    .tvcard-video-wrap,
+    .results-mini-ba,
+    .ba-slider {
+      border-radius: 20px;
+    }
+
+    .tvcard-play-btn {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 18px;
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      gap: 10px;
+    }
+
+    .tvcard-name {
+      font-size: 22px;
+      letter-spacing: 2.8px;
+      text-align: left;
+    }
+
+    .tvcard-desc {
+      font-size: 12px;
+      line-height: 1.7;
+      text-align: left;
     }
 
     .results-video-scroll .tvcard {
-      flex-basis: 86vw;
+      flex-basis: 92vw;
     }
 
     .results-video-scroll .tvcard-name,
@@ -1771,35 +1970,34 @@ content="anton.png"
       text-align: left;
     }
 
-    .results-video-scroll .tvcard {
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(17,17,17,0.96), rgba(6,6,6,0.96));
-      box-shadow: 0 16px 36px rgba(0,0,0,0.28);
-    }
-
     .results-mini-ba {
-      aspect-ratio: 4 / 5.4;
-      border-radius: 18px;
+      aspect-ratio: 4 / 5.35;
+      border-radius: 20px;
     }
 
     .results-mini-ba .ba-toggle-btn {
       max-width: none;
-      width: calc(100% - 20px);
-      bottom: 10px;
-      min-height: 46px;
-      padding: 12px 16px;
+      width: calc(100% - 24px);
+      bottom: 12px;
+      min-height: 50px;
+      padding: 12px 18px;
       font-size: 11px;
+      letter-spacing: 1.7px;
     }
 
     .results-mini-labels {
-      inset: auto 10px 62px;
+      inset: auto 12px 68px;
     }
 
     .results-mini-tag {
-      font-size: 8px;
-      letter-spacing: 1.4px;
+      font-size: 9px;
+      letter-spacing: 1.6px;
+      padding: 6px 10px;
+    }
+
+    footer,
+    .footer-sub {
+      padding-inline: 20px;
     }
 
     .tscroll-fade-left,
@@ -1809,6 +2007,7 @@ content="anton.png"
 
     .scroll-hint {
       justify-content: center;
+      padding-inline: 4px;
     }
   }
 </style>
@@ -2184,7 +2383,7 @@ content="anton.png"
 
     </div>
 
-    <div class="scroll-hint reveal" style="justify-content:center;">
+    <div class="scroll-hint results-more-hint reveal" style="justify-content:center;">
   <span class="scroll-hint-arrow" style="font-size: 22px; color: #ffffff; opacity: 0.9;">←</span>
 
   <span class="scroll-hint-text" style="
@@ -2902,11 +3101,38 @@ function registerTestimonialCard(card) {
   const playBtn = card.querySelector('.tvcard-play-btn');
   if (!video || !playBtn) return;
 
+  function toggleVideoPlayback() {
+    const playing = !video.paused && !video.ended;
+    pauseOtherTestimonials(video);
+
+    if (playing) {
+      video.pause();
+      syncTestimonialUi(card);
+      return;
+    }
+
+    video.muted = false;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(function() {
+        video.muted = true;
+        return video.play().catch(function() {
+          syncTestimonialUi(card);
+        });
+      }).finally(function() {
+        syncTestimonialUi(card);
+      });
+      return;
+    }
+
+    syncTestimonialUi(card);
+  }
+
   card.dataset.videoReady = 'true';
-  video.controls = true;
+  video.controls = false;
   video.autoplay = false;
   video.loop = false;
-  video.muted = false;
+  video.muted = true;
   video.pause();
   video.currentTime = 0;
   video.playsInline = true;
@@ -2917,23 +3143,14 @@ function registerTestimonialCard(card) {
 
   testimonialPlayers.set(video, card);
 
-  playBtn.addEventListener('click', function() {
-    const playing = !video.paused && !video.ended;
-    pauseOtherTestimonials(video);
+  playBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleVideoPlayback();
+  });
 
-    if (playing) {
-      video.pause();
-      syncTestimonialUi(card);
-      return;
-    }
-
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(function() {
-        syncTestimonialUi(card);
-      });
-    }
-    syncTestimonialUi(card);
+  video.addEventListener('click', function() {
+    toggleVideoPlayback();
   });
 
   ['play', 'pause', 'ended'].forEach(function(eventName) {
@@ -3265,21 +3482,38 @@ function showFeedback(msg, success) {
     var nextBtn = track.querySelector('.tscroll-btn-next');
     if (!inner || !prevBtn || !nextBtn) return;
 
-    var cardWidth = 240; // px — tvcard flex width + gap
+    function getScrollStep() {
+      var firstCard = inner.querySelector('.tvcard');
+      if (!firstCard) return Math.max(inner.clientWidth * 0.85, 220);
+      var styles = window.getComputedStyle(inner);
+      var gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+      return firstCard.getBoundingClientRect().width + gap;
+    }
+
+    function scrollTrack(direction) {
+      inner.scrollBy({ left: getScrollStep() * direction, behavior: 'smooth' });
+    }
 
     prevBtn.addEventListener('click', function() {
-      inner.scrollBy({ left: -cardWidth * 2, behavior: 'smooth' });
+      scrollTrack(-1);
     });
     nextBtn.addEventListener('click', function() {
-      inner.scrollBy({ left: cardWidth * 2, behavior: 'smooth' });
+      scrollTrack(1);
     });
 
     function updateButtons() {
+      var isLoopingTrack = inner.dataset.loopReady === 'true';
+      if (isLoopingTrack) {
+        prevBtn.style.opacity = '1';
+        nextBtn.style.opacity = '1';
+        return;
+      }
       prevBtn.style.opacity = inner.scrollLeft <= 0 ? '0.35' : '1';
       nextBtn.style.opacity = inner.scrollLeft + inner.clientWidth >= inner.scrollWidth - 10 ? '0.35' : '1';
     }
 
     inner.addEventListener('scroll', updateButtons);
+    window.addEventListener('resize', updateButtons);
     updateButtons();
   });
 })();
@@ -3358,6 +3592,13 @@ function showFeedback(msg, success) {
     var showingAfter = slider.classList.contains('revealed');
     text.textContent = showingAfter ? 'SEE BEFORE' : 'SEE AFTER';
     btn.setAttribute('aria-label', showingAfter ? 'Show before video' : 'Show after video');
+    btn.setAttribute('aria-pressed', String(showingAfter));
+  }
+
+  function toggleBaSlider(slider) {
+    if (!slider) return;
+    slider.classList.toggle('revealed');
+    syncBaSliderUi(slider);
   }
 
   function registerBaSlider(slider) {
@@ -3369,9 +3610,14 @@ function showFeedback(msg, success) {
     syncBaSliderUi(slider);
 
     btn.addEventListener('click', function(e) {
+      e.preventDefault();
       e.stopPropagation();
-      slider.classList.toggle('revealed');
-      syncBaSliderUi(slider);
+      toggleBaSlider(slider);
+    });
+
+    slider.addEventListener('click', function(e) {
+      if (e.target.closest('.ba-toggle-btn')) return;
+      toggleBaSlider(slider);
     });
   }
 
@@ -3394,9 +3640,22 @@ function showFeedback(msg, success) {
 
     var speed = inner.closest('.results-video-scroll') ? 0.55 : 0.6;
     var isPaused = false;
+    var pauseUntil = 0;
+
+    function pauseTrack(duration) {
+      isPaused = true;
+      pauseUntil = Math.max(pauseUntil, Date.now() + (duration || 2200));
+    }
+
+    function resumeTrack() {
+      if (Date.now() >= pauseUntil) {
+        isPaused = false;
+      }
+    }
 
     function autoScroll() {
       var disableLoop = mobileQuery.matches;
+      resumeTrack();
       if (!isPaused && !disableLoop) {
         inner.scrollLeft += speed;
         if (inner.scrollLeft >= inner.scrollWidth / 2) {
@@ -3406,10 +3665,21 @@ function showFeedback(msg, success) {
       requestAnimationFrame(autoScroll);
     }
 
-    inner.addEventListener('mouseenter', function() { isPaused = true; });
-    inner.addEventListener('mouseleave', function() { isPaused = false; });
-    inner.addEventListener('touchstart', function() { isPaused = true; }, { passive: true });
-    inner.addEventListener('touchend', function() { isPaused = false; });
+    inner.addEventListener('mouseenter', function() { pauseTrack(1000000); });
+    inner.addEventListener('mouseleave', function() { pauseUntil = 0; resumeTrack(); });
+    inner.addEventListener('touchstart', function() { pauseTrack(2600); }, { passive: true });
+    inner.addEventListener('touchend', function() { pauseTrack(1800); });
+    inner.addEventListener('focusin', function() { pauseTrack(3200); });
+    inner.addEventListener('click', function(event) {
+      if (event.target.closest('.tvcard-play-btn, .ba-toggle-btn, .tscroll-nav-btn')) {
+        pauseTrack(3200);
+      }
+    });
+    inner.querySelectorAll('.tvcard-video, .tvcard-play-btn, .ba-toggle-btn, .ba-slider').forEach(function(control) {
+      control.addEventListener('pointerdown', function() {
+        pauseTrack(3200);
+      });
+    });
 
     requestAnimationFrame(autoScroll);
   });
