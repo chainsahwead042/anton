@@ -1507,6 +1507,51 @@ content="anton.png"
   font-size: 8px;
 }
 
+.results-mini-play-btn {
+  pointer-events: auto;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 82px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.68);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.results-mini-play-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(209,84,26,0.18);
+  border-color: rgba(209,84,26,0.75);
+}
+
+.results-mini-play-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.results-mini-play-btn.is-playing {
+  background: rgba(209,84,26,0.24);
+  border-color: rgba(255,156,25,0.92);
+}
+
+.results-mini-play-icon {
+  font-size: 10px;
+  line-height: 1;
+}
+
 .results-mini-ba::after {
   content: '';
   position: absolute;
@@ -3600,16 +3645,35 @@ function showFeedback(msg, success) {
 
 <script>
   // ── BEFORE / AFTER TOGGLE BUTTON ──
+  function getBaSliderVideos(slider) {
+    return Array.from(slider.querySelectorAll('.ba-video video'));
+  }
+
   function syncBaSliderUi(slider) {
     if (!slider) return;
     var btn = slider.querySelector('.ba-toggle-btn');
     var text = btn && btn.querySelector('.ba-toggle-text');
-    if (!btn || !text) return;
+    if (btn && text) {
+      var showingAfter = slider.classList.contains('revealed');
+      text.textContent = showingAfter ? 'SEE BEFORE' : 'SEE AFTER';
+      btn.setAttribute('aria-label', showingAfter ? 'Show before video' : 'Show after video');
+      btn.setAttribute('aria-pressed', String(showingAfter));
+    }
 
-    var showingAfter = slider.classList.contains('revealed');
-    text.textContent = showingAfter ? 'SEE BEFORE' : 'SEE AFTER';
-    btn.setAttribute('aria-label', showingAfter ? 'Show before video' : 'Show after video');
-    btn.setAttribute('aria-pressed', String(showingAfter));
+    var playBtn = slider.querySelector('.results-mini-play-btn');
+    if (!playBtn) return;
+
+    var playIcon = playBtn.querySelector('.results-mini-play-icon');
+    var playText = playBtn.querySelector('.results-mini-play-text');
+    var videos = getBaSliderVideos(slider);
+    var activeVideo = videos.find(function(video) { return !!video; }) || null;
+    var isPlaying = !!activeVideo && !activeVideo.paused && !activeVideo.ended;
+
+    playBtn.classList.toggle('is-playing', isPlaying);
+    playBtn.setAttribute('aria-pressed', String(isPlaying));
+    playBtn.setAttribute('aria-label', isPlaying ? 'Pause before and after videos' : 'Play before and after videos');
+    if (playIcon) playIcon.textContent = isPlaying ? '❚❚' : '▶';
+    if (playText) playText.textContent = isPlaying ? 'Pause' : 'Play';
   }
 
   function toggleBaSlider(slider) {
@@ -3618,12 +3682,48 @@ function showFeedback(msg, success) {
     syncBaSliderUi(slider);
   }
 
+  function ensureMiniBaPlayButton(slider) {
+    if (!slider.classList.contains('results-mini-ba')) return null;
+    var existing = slider.querySelector('.results-mini-play-btn');
+    if (existing) return existing;
+
+    var playBtn = document.createElement('button');
+    playBtn.type = 'button';
+    playBtn.className = 'results-mini-play-btn';
+    playBtn.innerHTML = '<span class="results-mini-play-icon">▶</span><span class="results-mini-play-text">Play</span>';
+    slider.appendChild(playBtn);
+    return playBtn;
+  }
+
   function registerBaSlider(slider) {
     if (!slider || slider.dataset.baReady === 'true') return;
     var btn = slider.querySelector('.ba-toggle-btn');
     if (!btn) return;
 
     slider.dataset.baReady = 'true';
+
+    var playBtn = ensureMiniBaPlayButton(slider);
+    var videos = getBaSliderVideos(slider);
+    videos.forEach(function(video) {
+      if (!video) return;
+      video.controls = false;
+      video.autoplay = false;
+      video.loop = false;
+      video.muted = true;
+      video.pause();
+      video.currentTime = 0;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('preload', 'metadata');
+      video.removeAttribute('autoplay');
+      video.removeAttribute('loop');
+      ['play', 'pause', 'ended'].forEach(function(eventName) {
+        video.addEventListener(eventName, function() {
+          syncBaSliderUi(slider);
+        });
+      });
+    });
+
     syncBaSliderUi(slider);
 
     btn.addEventListener('click', function(e) {
@@ -3632,8 +3732,47 @@ function showFeedback(msg, success) {
       toggleBaSlider(slider);
     });
 
+    if (playBtn) {
+      playBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var currentlyPlaying = videos.some(function(video) {
+          return video && !video.paused && !video.ended;
+        });
+
+        if (currentlyPlaying) {
+          videos.forEach(function(video) {
+            if (video) video.pause();
+          });
+          syncBaSliderUi(slider);
+          return;
+        }
+
+        var primaryVideo = videos[0];
+        var fallbackVideo = videos.find(function(video) { return !!video; });
+        var playTarget = primaryVideo || fallbackVideo;
+        if (!playTarget) return;
+
+        var referenceTime = playTarget.currentTime || 0;
+        videos.forEach(function(video) {
+          if (!video) return;
+          try {
+            video.currentTime = referenceTime;
+          } catch (error) {}
+          video.muted = true;
+        });
+
+        Promise.all(videos.filter(Boolean).map(function(video) {
+          return video.play().catch(function() { return null; });
+        })).finally(function() {
+          syncBaSliderUi(slider);
+        });
+      });
+    }
+
     slider.addEventListener('click', function(e) {
-      if (e.target.closest('.ba-toggle-btn')) return;
+      if (e.target.closest('.ba-toggle-btn, .results-mini-play-btn')) return;
       toggleBaSlider(slider);
     });
   }
