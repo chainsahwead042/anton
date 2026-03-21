@@ -774,6 +774,117 @@
     background-size: cover; background-position: center;
   }
 
+  .result-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(6,8,15,0.95) 0%, transparent 60%);
+  }
+
+  .result-card-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    border: 2px dashed var(--border2);
+    border-radius: 4px;
+  }
+
+  .result-card-placeholder-text {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--muted); text-align: center;
+    line-height: 1.8; padding: 0 20px;
+  }
+
+  .result-info {
+    position: relative; z-index: 1;
+    padding: 20px;
+  }
+
+  .result-skill {
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--accent); margin-bottom: 6px;
+  }
+
+  .result-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 1px;
+  }
+
+  .result-detail {
+    font-size: 11px; color: var(--muted2);
+    margin-top: 4px;
+  }
+
+  /* ── Testimonials ── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .tcard {
+    padding: 28px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .tcard:hover { border-color: var(--border2); }
+
+  .tcard-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px; line-height: 0.8;
+    color: var(--accent); opacity: 0.15;
+    position: absolute; top: 16px; right: 20px;
+  }
+
+  .tcard-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 15px; color: var(--muted2);
+    line-height: 1.8; margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+
+  .tcard-divider {
+    height: 1px; background: var(--border);
+    margin-bottom: 20px;
+  }
+
+  .tcard-author {
+    display: flex; align-items: center; gap: 14px;
+  }
+
+  /* ── REPLACE: Set background-image for avatar ── */
+  .tcard-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    flex-shrink: 0;
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--muted);
+  }
+
+  .tcard-name {
+    font-size: 12px; color: var(--text); font-weight: 500;
+  }
+
+  .tcard-meta {
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 1px; margin-top: 2px;
+  }
+
+  .tcard-skill {
+    display: inline-block;
+    font-size: 8px; letter-spacing: 2px;
+    color: var(--green); background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    padding: 2px 8px; border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  /* ── CTA Banner ── */
   .cta-banner {
     text-align: center;
     padding: 100px 60px;
@@ -1009,6 +1120,43 @@
     background: #000;
   }
 
+  .tvcard-play-btn {
+    align-self: center;
+    border: 1px solid rgba(209,84,26,0.55);
+    background: transparent;
+    color: var(--text);
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tvcard-play-btn.is-playing {
+    background: rgba(209,84,26,0.2);
+    border-color: rgba(255,156,25,0.9);
+    color: #fff;
+  }
+
+  .tvcard-play-btn:hover {
+    background: rgba(209,84,26,0.18);
+    border-color: rgba(209,84,26,0.85);
+    transform: translateY(-1px);
+  }
+
+  .tvcard-play-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
   .tvcard-play-icon {
     font-size: 12px;
     line-height: 1;
@@ -1156,6 +1304,77 @@
   /* Revealed state */
   .ba-slider.revealed .ba-after  { transform: translateX(0); }
   .ba-slider.revealed .ba-before { transform: translateX(-100%); }
+
+  /* ── BA Toggle Button ── */
+  .ba-toggle-btn {
+    pointer-events: auto;
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    background: rgba(0,0,0,0.6);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .ba-toggle-btn:hover {
+    background: rgba(0,0,0,0.82);
+    border-color: rgba(255,255,255,0.5);
+  }
+  .ba-toggle-btn:active {
+    transform: translateX(-50%) scale(0.96);
+  }
+  .ba-toggle-icon {
+    font-size: 9px;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .ba-toggle-btn {
+      bottom: 14px;
+      width: calc(100% - 28px);
+      max-width: 280px;
+      justify-content: center;
+      padding: 14px 20px;
+      font-size: 13px;
+      letter-spacing: 2.4px;
+      border-radius: 999px;
+      min-height: 52px;
+    }
+
+    .ba-toggle-icon {
+      font-size: 12px;
+    }
+  }
+
+  .ba-toggle-btn .ba-toggle-text {
+    display: inline-block;
+  }
+
+  @keyframes arrowPulse {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1; }
+  }
+
+  @keyframes handleGlow {
+    0%, 100% {
+      box-shadow: 0 0 4px rgba(255,255,255,0.6), 0 0 10px rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.85);
+    }
     50% {
       box-shadow: 0 0 8px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,0.6), 0 0 35px rgba(209,84,26,0.4);
       background: #ffffff;
@@ -1174,6 +1393,53 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .result-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .result-photo {
+    aspect-ratio: 3/4;
+    background: var(--surface2);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    animation: borderGlow 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .result-photo:nth-child(2) { animation-delay: 0.4s; }
+
+  .result-photo-label {
+    position: absolute;
+    bottom: 10px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px; letter-spacing: 3px;
+    color: #fff;
+    background: rgba(0,0,0,0.65);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .result-photo-label.after { color: var(--accent); }
+
+  .result-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px; font-size: 18px;
+    color: var(--muted); text-align: center;
+    border: 1px dashed var(--border2);
+  }
+
+  .result-photo-placeholder span {
+    font-size: 9px; letter-spacing: 1px; color: var(--border2);
   }
 
   .result-name {
@@ -1224,6 +1490,124 @@
   line-height: 1.6;
   color: var(--muted2);
   letter-spacing: 0.03em;
+}
+
+.results-video-scroll {
+  margin-top: 38px;
+}
+
+.results-video-scroll .tscroll-inner {
+  padding-top: 8px;
+}
+
+.results-video-scroll .tvcard {
+  flex: 0 0 260px;
+}
+
+.results-video-scroll .tvcard-desc {
+  text-align: center;
+}
+
+.results-mini-ba {
+  width: 100%;
+  aspect-ratio: 9/16;
+  min-height: 0;
+}
+
+.results-mini-ba .ba-toggle-btn {
+  bottom: 12px;
+  padding: 8px 16px;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+}
+
+.results-mini-ba .ba-toggle-icon {
+  font-size: 8px;
+}
+
+.results-mini-play-btn {
+  pointer-events: auto;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 82px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.68);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.results-mini-play-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(209,84,26,0.18);
+  border-color: rgba(209,84,26,0.75);
+}
+
+.results-mini-play-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.results-mini-play-btn.is-playing {
+  background: rgba(209,84,26,0.24);
+  border-color: rgba(255,156,25,0.92);
+}
+
+.results-mini-play-icon {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.results-mini-ba::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 28%;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.results-mini-labels {
+  position: absolute;
+  inset: auto 12px 54px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.results-mini-tag {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.72);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.7px;
+}
+
+.results-mini-tag.after {
+  color: var(--accent);
+}
+
+.results-video-scroll .tvcard-name {
+  font-size: 18px;
+  letter-spacing: 2.4px;
 }
 
 /* fades stay same */
@@ -1766,6 +2150,7 @@
   color: #444;
 }
 
+
 /* ── Testimonials horizontal scroll — desktop nav buttons ── */
 .tscroll-nav-btn {
   position: absolute;
@@ -2268,6 +2653,7 @@ img, video, iframe, canvas {
 }
 </style>
 
+
 <style id="mobile-hotfixes-final">
 @media (max-width: 768px) {
   #hero,
@@ -2569,6 +2955,7 @@ img, video, iframe, canvas {
   background: #000;
 }
 
+
 .result-info {
   margin-top: 14px;
 }
@@ -2681,6 +3068,70 @@ img, video, iframe, canvas {
   cursor: pointer;
 }
 </style>
+<script id="results-mobile-arrow-hotfix">
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.results-video-scroll').forEach(function(track){
+    var inner = track.querySelector('.tscroll-inner');
+    var prev = track.querySelector('.tscroll-btn-prev');
+    var next = track.querySelector('.tscroll-btn-next');
+    if (!inner) return;
+    if (prev) prev.addEventListener('click', function(e){ e.preventDefault(); inner.scrollBy({left: -Math.min(inner.clientWidth * 0.9, 320), behavior: 'smooth'}); });
+    if (next) next.addEventListener('click', function(e){ e.preventDefault(); inner.scrollBy({left:  Math.min(inner.clientWidth * 0.9, 320), behavior: 'smooth'}); });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('.ba-slider').forEach((slider) => {
+  const beforeWrap = slider.querySelector('.ba-before');
+  const afterWrap = slider.querySelector('.ba-after');
+  const beforeVideo = beforeWrap.querySelector('video');
+  const afterVideo = afterWrap.querySelector('video');
+  const toggle = slider.querySelector('.ba-toggle');
+
+  let showingAfter = false;
+
+  function playVideo(video) {
+    const p = video.play();
+    if (p !== undefined) {
+      p.catch(() => {});
+    }
+  }
+
+  function pauseVideo(video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  function updateView() {
+    if (showingAfter) {
+      beforeWrap.classList.remove('is-active');
+      afterWrap.classList.add('is-active');
+
+      pauseVideo(beforeVideo);
+      playVideo(afterVideo);
+
+      toggle.textContent = 'SEE BEFORE';
+    } else {
+      afterWrap.classList.remove('is-active');
+      beforeWrap.classList.add('is-active');
+
+      pauseVideo(afterVideo);
+      playVideo(beforeVideo);
+
+      toggle.textContent = 'SEE AFTER';
+    }
+  }
+
+  toggle.addEventListener('click', () => {
+    showingAfter = !showingAfter;
+    updateView();
+  });
+
+  updateView();
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.ba-slider').forEach((slider) => {
@@ -2905,6 +3356,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 
+
   <!-- RESULT 2 — TORYN -->
   <div class="result-card">
     <div class="ba-slider" data-name="TORYN">
@@ -2935,6 +3387,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 
+
   <!-- RESULT 3 — JOSHUA -->
   <div class="result-card">
     <div class="ba-slider" data-name="JOSHUA">
@@ -2964,6 +3417,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </p>
     </div>
   </div>
+
 
   <!-- RESULT 4 — BRAXTON -->
   <div class="result-card">
@@ -2998,7 +3452,113 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
   </div>
 </section>
+
+    <div class="results-scroll-header results-more-hint reveal" aria-hidden="true">
+      <span class="results-scroll-arrow">←</span>
+      <span class="results-scroll-label">AND HUNDREDS MORE...</span>
+      <span class="results-scroll-arrow">→</span>
+    </div>
+
+  <div class="tscroll-track results-video-scroll">
+    <button class="tscroll-nav-btn tscroll-btn-prev" type="button" aria-label="Previous client result video">&#8249;</button>
+    <button class="tscroll-nav-btn tscroll-btn-next" type="button" aria-label="Next client result video">&#8250;</button>
+    <div class="tscroll-inner">
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 1">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                  <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 1</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 1. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 2">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+          <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 2</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 2. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 3">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                  <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 3</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 3. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 4">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                 <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 4</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 4. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 5">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                  <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 5</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 5. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 6">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                 <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 6</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 6. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 7">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                 <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 7</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 7. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 8">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                 <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 8</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 8. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 9">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+                 <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 9</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 9. Tap the toggle to compare before and after.</div>
+      </div>
+      <div class="tvcard">
+        <div class="ba-slider results-mini-ba" data-name="NAME 10">
+          <div class="ba-after ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.41 PM.mp4" type="video/mp4"></video></div>
+          <div class="ba-before ba-video"><video muted playsinline preload="metadata"><source src="WhatsApp Video 2026-03-19 at 11.44.23 PM.mp4" type="video/mp4"></video></div>
+              <button class="ba-toggle-btn" type="button"><span class="ba-toggle-icon">&#9654;</span><span class="ba-toggle-text">SEE AFTER</span></button>
+        </div>
+        <div class="tvcard-name">NAME 10</div>
+        <div class="tvcard-desc">Quick preview card for client result slot 10. Tap the toggle to compare before and after.</div>
+      </div>
+    </div>
+    <div class="tscroll-fade-left"></div>
+    <div class="tscroll-fade-right"></div>
+  </div>
 </section>
+
 
 <!-- ════════════════════════════════════════
      SECTION 3B — CLIENT TESTIMONIALS (HORIZONTAL SCROLL)
@@ -3169,6 +3729,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="tscroll-fade-right"></div>
 </div>
 </section>
+
+
 
 <!-- ════════════════════════════════════════
      SECTION 4 — ABOUT ANTON (COACH BIO)
@@ -3370,6 +3932,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
+
 <!-- ════════════════════════════════════════
      APPLICATION FORM
 ════════════════════════════════════════ -->
@@ -3508,6 +4071,7 @@ document.addEventListener('DOMContentLoaded', () => {
   background: #000;
 }
 
+
 </style>
 </div>
 </section>
@@ -3598,6 +4162,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // ─── Testimonial videos ───
 const testimonialPlayers = new Map();
+
 
 function primeScrollerVideo(video) {
   if (!video) return;
@@ -4042,6 +4607,7 @@ function showFeedback(msg, success) {
 }
 </script>
 
+
 <script>
 (function() {
   var progressSlider = document.getElementById('serious-slider');
@@ -4159,215 +4725,41 @@ function showFeedback(msg, success) {
 })();
 </script>
 
-<script>
-  // ── BEFORE / AFTER TOGGLE BUTTON ──
-  function getBaSliderVideos(slider) {
-    return Array.from(slider.querySelectorAll('.ba-video video'));
-  }
 
-  function syncBaSliderUi(slider) {
-    if (!slider) return;
-    var btn = slider.querySelector('.ba-toggle-btn');
-    var text = btn && btn.querySelector('.ba-toggle-text');
-    if (btn && text) {
-      var showingAfter = slider.classList.contains('revealed');
-      text.textContent = showingAfter ? 'SEE BEFORE' : 'SEE AFTER';
-      btn.setAttribute('aria-label', showingAfter ? 'Show before video' : 'Show after video');
-      btn.setAttribute('aria-pressed', String(showingAfter));
-    }
-
-    var playBtn = slider.querySelector('.results-mini-play-btn');
-    if (!playBtn) return;
-
-    var playIcon = playBtn.querySelector('.results-mini-play-icon');
-    var playText = playBtn.querySelector('.results-mini-play-text');
-    var videos = getBaSliderVideos(slider);
-    var activeVideo = videos.find(function(video) { return !!video; }) || null;
-    var isPlaying = !!activeVideo && !activeVideo.paused && !activeVideo.ended;
-
-    playBtn.classList.toggle('is-playing', isPlaying);
-    playBtn.setAttribute('aria-pressed', String(isPlaying));
-    playBtn.setAttribute('aria-label', isPlaying ? 'Pause before and after videos' : 'Play before and after videos');
-    if (playIcon) playIcon.textContent = isPlaying ? '❚❚' : '▶';
-    if (playText) playText.textContent = isPlaying ? 'Pause' : 'Play';
-  }
-
-  function toggleBaSlider(slider) {
-    if (!slider) return;
-    slider.classList.toggle('revealed');
-    syncBaSliderUi(slider);
-  }
-
- function ensureMiniBaPlayButton(slider) {
-    if (!slider.classList.contains('results-mini-ba') && !slider.closest('.tscroll-inner') && !slider.closest('.results-grid')) return null;
-    var existing = slider.querySelector('.results-mini-play-btn');
-    if (existing) return existing;
-
-    var playBtn = document.createElement('button');
-    playBtn.type = 'button';
-    playBtn.className = 'results-mini-play-btn';
-    playBtn.innerHTML = '<span class="results-mini-play-icon">▶</span><span class="results-mini-play-text">Play</span>';
-    slider.appendChild(playBtn);
-    return playBtn;
-  }
-
-  function registerBaSlider(slider) {
-    if (!slider || slider.dataset.baReady === 'true') return;
-    var btn = slider.querySelector('.ba-toggle-btn');
-    if (!btn) return;
-
-    slider.dataset.baReady = 'true';
-
-    var playBtn = ensureMiniBaPlayButton(slider);
-    var videos = getBaSliderVideos(slider);
-    videos.forEach(function(video) {
-      if (!video) return;
-      video.controls = false;
-      video.autoplay = false;
-      video.loop = false;
-      video.muted = true;
-      video.pause();
-      video.currentTime = 0;
-      video.playsInline = true;
-      video.setAttribute('playsinline', '');
-      video.setAttribute('preload', 'metadata');
-      video.removeAttribute('autoplay');
-      video.removeAttribute('loop');
-      ['play', 'pause', 'ended'].forEach(function(eventName) {
-        video.addEventListener(eventName, function() {
-          syncBaSliderUi(slider);
-        });
-      });
-    });
-
-    syncBaSliderUi(slider);
-
-   btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleBaSlider(slider);
-      var inner = slider.closest('.tscroll-inner');
-      if (inner) inner.dispatchEvent(new CustomEvent('ba-interaction'));
-    });
-
-    if (playBtn) {
-      playBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        var currentlyPlaying = videos.some(function(video) {
-          return video && !video.paused && !video.ended;
-        });
-
-        if (currentlyPlaying) {
-          videos.forEach(function(video) {
-            if (video) video.pause();
-          });
-          syncBaSliderUi(slider);
-          return;
-        }
-
-        var primaryVideo = videos[0];
-        var fallbackVideo = videos.find(function(video) { return !!video; });
-        var playTarget = primaryVideo || fallbackVideo;
-        if (!playTarget) return;
-
-        var referenceTime = playTarget.currentTime || 0;
-        videos.forEach(function(video) {
-          if (!video) return;
-          try {
-            video.currentTime = referenceTime;
-          } catch (error) {}
-          video.muted = true;
-        });
-
-        Promise.all(videos.filter(Boolean).map(function(video) {
-          return video.play().catch(function() { return null; });
-        })).finally(function() {
-          syncBaSliderUi(slider);
-        });
-      });
-    }
-
-    slider.addEventListener('click', function(e) {
-      if (e.target.closest('.ba-toggle-btn, .results-mini-play-btn')) return;
-      toggleBaSlider(slider);
-    });
-  }
-
-  document.querySelectorAll('.ba-slider').forEach(registerBaSlider);
-</script>
 
 <script>
-// ── INFINITE AUTO-SCROLL TRACKS ──
-(function() {
-  var mobileQuery = window.matchMedia('(max-width: 600px)');
+  // Testimonial card play / pause
+  document.querySelectorAll('.tvcard').forEach((card) => {
+    const video = card.querySelector('video');
+    const btn = card.querySelector('.tvcard-play-btn');
 
-  document.querySelectorAll('.tscroll-track .tscroll-inner').forEach(function(inner) {
-    if (inner.dataset.loopReady === 'true') return;
-    inner.dataset.loopReady = 'true';
+    if (!video || !btn) return;
 
-    var originalMarkup = inner.innerHTML;
-    inner.innerHTML += originalMarkup;
-    inner.querySelectorAll('video').forEach(primeScrollerVideo);
-    inner.querySelectorAll('.tvcard').forEach(function(card) {
-      card.dataset.videoReady = '';
-      registerTestimonialCard(card);
-    });
-    inner.querySelectorAll('.ba-slider').forEach(function(slider) {
-      slider.dataset.baReady = '';
-      registerBaSlider(slider);
-    });
+    btn.addEventListener('click', () => {
+      if (video.paused) {
+        document.querySelectorAll('.tvcard video').forEach((v) => {
+          if (v !== video) {
+            v.pause();
+            const otherBtn = v.closest('.tvcard')?.querySelector('.tvcard-play-btn');
+            if (otherBtn) {
+              otherBtn.classList.remove('is-playing');
+              otherBtn.innerHTML = '<span class="tvcard-play-icon">▶</span> PLAY';
+            }
+          }
+        });
 
-    var speed = inner.closest('.results-video-scroll') ? 0.55 : 0.6;
-    var isPaused = false;
-    var pauseUntil = 0;
-
-    function pauseTrack(duration) {
-      isPaused = true;
-      pauseUntil = Math.max(pauseUntil, Date.now() + (duration || 2200));
-    }
-
-    function resumeTrack() {
-      if (Date.now() >= pauseUntil) {
-        isPaused = false;
-      }
-    }
-
-    function autoScroll() {
-      var disableLoop = mobileQuery.matches;
-      resumeTrack();
-      if (!isPaused && !disableLoop) {
-        inner.scrollLeft += speed;
-        if (inner.scrollLeft >= inner.scrollWidth / 2) {
-          inner.scrollLeft -= inner.scrollWidth / 2;
-        }
-      }
-      requestAnimationFrame(autoScroll);
-    }
-
-    inner.addEventListener('mouseenter', function() { pauseTrack(1000000); });
-    inner.addEventListener('mouseleave', function() { pauseUntil = 0; resumeTrack(); });
-    inner.addEventListener('touchstart', function() { pauseTrack(2600); }, { passive: true });
-    inner.addEventListener('touchend', function() { pauseTrack(1800); });
-    inner.addEventListener('focusin', function() { pauseTrack(3200); });
-    inner.addEventListener('click', function(event) {
-      if (event.target.closest('.tvcard-play-btn, .ba-toggle-btn, .tscroll-nav-btn')) {
-        pauseTrack(3200);
+        video.play().catch(() => {});
+        btn.classList.add('is-playing');
+        btn.innerHTML = '<span class="tvcard-play-icon">❚❚</span> PAUSE';
+      } else {
+        video.pause();
+        btn.classList.remove('is-playing');
+        btn.innerHTML = '<span class="tvcard-play-icon">▶</span> PLAY';
       }
     });
-    inner.querySelectorAll('.tvcard-video, .tvcard-play-btn, .ba-toggle-btn, .ba-slider').forEach(function(control) {
-      control.addEventListener('pointerdown', function() {
-        pauseTrack(3200);
-      });
-    });
-
-    requestAnimationFrame(autoScroll);
   });
-})();
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+
+  // Before / after toggle
   document.querySelectorAll('.ba-slider').forEach((slider) => {
     const beforeWrap = slider.querySelector('.ba-before');
     const afterWrap = slider.querySelector('.ba-after');
@@ -4379,40 +4771,117 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let showingAfter = false;
 
-    const play = (video) => {
-      const promise = video.play();
-      if (promise) promise.catch(() => {});
-    };
+    function play(video) {
+      const p = video.play();
+      if (p) p.catch(() => {});
+    }
 
-    const stop = (video) => {
+    function pause(video) {
       video.pause();
       video.currentTime = 0;
-    };
+    }
 
-    const update = () => {
+    function update() {
       if (showingAfter) {
         beforeWrap.classList.remove('is-active');
         afterWrap.classList.add('is-active');
-        stop(beforeVideo);
+
+        pause(beforeVideo);
         play(afterVideo);
+
         toggle.textContent = 'SEE BEFORE';
       } else {
         afterWrap.classList.remove('is-active');
         beforeWrap.classList.add('is-active');
-        stop(afterVideo);
+
+        pause(afterVideo);
         play(beforeVideo);
+
         toggle.textContent = 'SEE AFTER';
       }
-    };
+    }
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       showingAfter = !showingAfter;
       update();
     });
 
     update();
   });
-});
+
+  // Infinite auto-scroll tracks
+  (function () {
+    const mobileQuery = window.matchMedia('(max-width: 600px)');
+
+    document.querySelectorAll('.tscroll-track .tscroll-inner').forEach((inner) => {
+      if (inner.dataset.loopReady === 'true') return;
+      inner.dataset.loopReady = 'true';
+
+      const originalMarkup = inner.innerHTML;
+      inner.innerHTML += originalMarkup;
+
+      if (typeof primeScrollerVideo === 'function') {
+        inner.querySelectorAll('video').forEach(primeScrollerVideo);
+      }
+
+      if (typeof registerTestimonialCard === 'function') {
+        inner.querySelectorAll('.tvcard').forEach((card) => {
+          card.dataset.videoReady = '';
+          registerTestimonialCard(card);
+        });
+      }
+
+      const speed = inner.closest('.results-video-scroll') ? 0.55 : 0.6;
+      let isPaused = false;
+      let pauseUntil = 0;
+
+      function pauseTrack(duration) {
+        isPaused = true;
+        pauseUntil = Math.max(pauseUntil, Date.now() + (duration || 2200));
+      }
+
+      function resumeTrack() {
+        if (Date.now() >= pauseUntil) {
+          isPaused = false;
+        }
+      }
+
+      function autoScroll() {
+        const disableLoop = mobileQuery.matches;
+        resumeTrack();
+
+        if (!isPaused && !disableLoop) {
+          inner.scrollLeft += speed;
+          if (inner.scrollLeft >= inner.scrollWidth / 2) {
+            inner.scrollLeft -= inner.scrollWidth / 2;
+          }
+        }
+
+        requestAnimationFrame(autoScroll);
+      }
+
+      inner.addEventListener('mouseenter', () => pauseTrack(1000000));
+      inner.addEventListener('mouseleave', () => {
+        pauseUntil = 0;
+        resumeTrack();
+      });
+      inner.addEventListener('touchstart', () => pauseTrack(2600), { passive: true });
+      inner.addEventListener('touchend', () => pauseTrack(1800));
+      inner.addEventListener('focusin', () => pauseTrack(3200));
+      inner.addEventListener('click', (event) => {
+        if (event.target.closest('.tvcard-play-btn, .ba-toggle, .tscroll-nav-btn')) {
+          pauseTrack(3200);
+        }
+      });
+
+      inner.querySelectorAll('.tvcard-video, .tvcard-play-btn, .ba-toggle, .ba-slider').forEach((control) => {
+        control.addEventListener('pointerdown', () => pauseTrack(3200));
+      });
+
+      requestAnimationFrame(autoScroll);
+    });
+  })();
 </script>
-</body>
 </html>
