@@ -2436,6 +2436,116 @@ img, video, iframe, canvas {
     display: none !important;
   }
 }
+
+@media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 0;
+    margin: 0;
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    text-align: left;
+    font-size: 20px;
+    line-height: 1;
+    margin: 0;
+    flex: 1;
+  }
+
+  .nav-cta {
+    width: auto;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 10px;
+    padding: 12px 14px;
+    min-height: auto;
+    flex-shrink: 0;
+  }
+
+  #hero {
+    padding: 96px 16px 48px;
+    text-align: center;
+  }
+
+  #hero > * {
+    text-align: center !important;
+  }
+
+  h1.hero-title {
+    font-size: clamp(34px, 11vw, 54px);
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    word-spacing: 0;
+    white-space: normal;
+    text-wrap: balance;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-training-wrap {
+    display: inline;
+    margin: 0;
+    white-space: normal;
+  }
+
+  .hero-sub {
+    margin: 22px auto 0;
+    text-align: center !important;
+    max-width: 100%;
+  }
+
+  .hero-pillars {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .results-video-scroll {
+    display: block !important;
+    margin-top: 28px;
+  }
+
+  .results-video-scroll .tscroll-track {
+    overflow: visible;
+  }
+
+  .results-video-scroll .tscroll-inner {
+    display: flex;
+    gap: 16px;
+    padding: 10px 16px 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .results-video-scroll .tvcard {
+    flex: 0 0 86vw;
+    scroll-snap-align: center;
+  }
+
+  .results-more-hint,
+  .scroll-hint,
+  .tscroll-fade-left,
+  .tscroll-fade-right,
+  #page-progress-slider {
+    display: none !important;
+  }
+}
 </style>
 
 </head>
