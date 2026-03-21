@@ -1249,8 +1249,21 @@
   }
 
   @media (max-width: 600px) {
-    .rp-strip { grid-template-columns: 1fr 1fr; }
-    .rp-tall  { display: none; }
+    .rp-strip {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 0 12px 18px;
+      align-items: start;
+    }
+
+    .rp-card,
+    .rp-tall {
+      display: block;
+      aspect-ratio: 1 / 1.15;
+      min-height: 120px;
+      max-height: 180px;
+      border-radius: 6px;
+    }
   }
 
   /* ── Before / After Slider ── */
@@ -1823,17 +1836,25 @@
     #hero {
       padding: 132px 20px 56px;
       min-height: auto;
+      align-items: center;
+      text-align: center;
     }
 
     #hero > div {
-      text-align: left !important;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center !important;
     }
 
     h1.hero-title {
       font-size: clamp(42px, 14vw, 68px);
       line-height: 0.92 !important;
-      letter-spacing: -0.03em;
+      letter-spacing: 0.04em;
       text-wrap: balance;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-training-wrap {
@@ -1869,6 +1890,20 @@
       letter-spacing: 0.04em !important;
       max-width: 100%;
       text-align: left;
+    }
+
+    .hero-pillars,
+    .hero-stats-row,
+    .hero-cta-row {
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-sub {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
 
     .video-wrap {
@@ -1956,7 +1991,7 @@
     .qualifier-strip { grid-template-columns: 1fr; }
     .results-more-hint,
     .results-video-scroll {
-      display: none;
+      display: block;
     }
 
     .tscroll-track {
@@ -2146,9 +2181,49 @@
 .tscroll-btn-prev { left: 10px; }
 .tscroll-btn-next { right: 10px; }
 
-/* Only show on desktop */
+.results-scroll-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px 0 18px;
+  text-align: center;
+}
+
+.results-scroll-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.results-scroll-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(209,84,26,0.5);
+  background: rgba(255,255,255,0.03);
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+  box-shadow: 0 0 10px rgba(209,84,26,0.18);
+}
+
+.results-video-scroll {
+  position: relative;
+}
+
+/* Show arrows on all screen sizes for client results */
+.results-video-scroll .tscroll-nav-btn {
+  display: flex;
+}
+
 @media (max-width: 900px) {
-  .tscroll-nav-btn { display: none; }
+  .tscroll-track:not(.results-video-scroll) .tscroll-nav-btn { display: none; }
+  .results-video-scroll .tscroll-nav-btn { display: flex; }
 }
 
 /* ── Vertical Page Progress Slider ── */
@@ -2412,12 +2487,18 @@ img, video, iframe, canvas {
   }
 
   .rp-strip {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 0 12px 18px;
+    align-items: start;
   }
 
+  .rp-card,
   .rp-tall {
     display: block;
+    aspect-ratio: 1 / 1.15;
+    min-height: 120px;
+    max-height: 180px;
   }
 
   .tscroll-inner {
@@ -2429,11 +2510,15 @@ img, video, iframe, canvas {
     flex: 0 0 86vw;
   }
 
-  .scroll-hint,
   .tscroll-fade-left,
   .tscroll-fade-right,
   #page-progress-slider {
     display: none !important;
+  }
+
+  .results-scroll-header,
+  .results-more-hint {
+    display: flex !important;
   }
 }
 
@@ -2538,15 +2623,164 @@ img, video, iframe, canvas {
     scroll-snap-align: center;
   }
 
-  .results-more-hint,
   .scroll-hint,
   .tscroll-fade-left,
   .tscroll-fade-right,
   #page-progress-slider {
     display: none !important;
   }
+
+  .results-more-hint,
+  .results-scroll-header {
+    display: flex !important;
+  }
+
+  .results-video-scroll .tscroll-nav-btn {
+    display: flex !important;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    top: 42%;
+  }
+
+  .results-video-scroll .tscroll-btn-prev {
+    left: 6px;
+  }
+
+  .results-video-scroll .tscroll-btn-next {
+    right: 6px;
+  }
 }
 </style>
+
+
+<style id="mobile-hotfixes-final">
+@media (max-width: 768px) {
+  #hero,
+  #hero > div,
+  #hero > *,
+  h1.hero-title,
+  .hero-sub,
+  .hero-pillars,
+  .hero-stats-row,
+  .hero-cta-row {
+    text-align: center !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  h1.hero-title {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    line-height: 0.95 !important;
+  }
+
+  .results-scroll-header,
+  .results-more-hint {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin: 12px auto 8px !important;
+    text-align: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .results-scroll-label {
+    display: inline-block !important;
+    font-size: 20px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 1.4px !important;
+    white-space: normal !important;
+  }
+
+  .results-scroll-arrow,
+  .scroll-hint-arrow,
+  .results-video-scroll .tscroll-nav-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .results-video-scroll {
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  .results-video-scroll .tscroll-nav-btn {
+    width: 44px !important;
+    height: 44px !important;
+    top: 38% !important;
+    border-radius: 999px !important;
+    background: rgba(8,8,8,.86) !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    box-shadow: 0 10px 22px rgba(0,0,0,.28) !important;
+    z-index: 30 !important;
+  }
+
+  .results-video-scroll .tscroll-btn-prev { left: 8px !important; }
+  .results-video-scroll .tscroll-btn-next { right: 8px !important; }
+
+  .scroll-hint {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin: 10px auto 16px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .scroll-hint-text {
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+  }
+
+  .rp-strip {
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    gap: 6px !important;
+    padding: 0 12px 18px !important;
+    align-items: start !important;
+  }
+
+  .rp-card,
+  .rp-tall,
+  .rp-strip > * {
+    min-width: 0 !important;
+    aspect-ratio: 1 / 1.12 !important;
+    min-height: 96px !important;
+    max-height: 145px !important;
+    overflow: hidden !important;
+  }
+
+  .rp-card img,
+  .rp-tall img,
+  .rp-strip img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+}
+</style>
+<script id="results-mobile-arrow-hotfix">
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.results-video-scroll').forEach(function(track){
+    var inner = track.querySelector('.tscroll-inner');
+    var prev = track.querySelector('.tscroll-btn-prev');
+    var next = track.querySelector('.tscroll-btn-next');
+    if (!inner) return;
+    if (prev) prev.addEventListener('click', function(e){ e.preventDefault(); inner.scrollBy({left: -Math.min(inner.clientWidth * 0.9, 320), behavior: 'smooth'}); });
+    if (next) next.addEventListener('click', function(e){ e.preventDefault(); inner.scrollBy({left:  Math.min(inner.clientWidth * 0.9, 320), behavior: 'smooth'}); });
+  });
+});
+</script>
 
 </head>
 <body>
@@ -2802,20 +3036,11 @@ img, video, iframe, canvas {
 
     </div>
 
-    <div class="scroll-hint results-more-hint reveal" style="justify-content:center;">
-  <span class="scroll-hint-arrow" style="font-size: 22px; color: #ffffff; opacity: 0.9;">←</span>
-
-  <span class="scroll-hint-text" style="
-    font-size: 18px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 1px;
-  ">
-    And 100s more...
-  </span>
-
-  <span class="scroll-hint-arrow" style="font-size: 22px; color: #ffffff; opacity: 0.9;">→</span>
-</div>
+    <div class="results-scroll-header results-more-hint reveal" aria-hidden="true">
+      <span class="results-scroll-arrow">←</span>
+      <span class="results-scroll-label">AND 100s MORE...</span>
+      <span class="results-scroll-arrow">→</span>
+    </div>
 
   <div class="tscroll-track results-video-scroll">
     <button class="tscroll-nav-btn tscroll-btn-prev" type="button" aria-label="Previous client result video">&#8249;</button>
@@ -4331,4 +4556,5 @@ document.querySelectorAll('.tvcard').forEach(card => {
   });
 });
 </script>
+
 </html>
