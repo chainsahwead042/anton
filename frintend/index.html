@@ -2803,6 +2803,18 @@ img, video, iframe, canvas {
   cursor: pointer;
 }
 
+.ba-video {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  position: absolute;
+  inset: 0;
+}
+
+.ba-video.is-active {
+  opacity: 1;
+  z-index: 2;
+}
+
 
 </style>
 <script id="results-mobile-arrow-hotfix">
@@ -2968,7 +2980,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="results-grid reveal">
 
   <!-- RESULT 1 — KEVIN -->
-  <div class="result-card">
+  <div class="tvcard">
     <div class="ba-slider" data-name="KEVIN">
 
       <button class="ba-toggle" type="button">SEE AFTER</button>
@@ -2998,7 +3010,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 
     <!-- RESULT 2 — JOSHUA -->
-  <div class="result-card">
+  <div class="tvcard">
     <div class="ba-slider" data-name="JOSHUA">
 
       <button class="ba-toggle" type="button">SEE AFTER</button>
@@ -3028,7 +3040,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 
   <!-- RESULT 3 — TORYN -->
-  <div class="result-card">
+ <div class="tvcard">
     <div class="ba-slider" data-name="TORYN">
 
       <button class="ba-toggle" type="button">SEE AFTER</button>
@@ -3059,8 +3071,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   <!-- RESULT 4 — BRAXTON -->
-  <div class="result-card">
+<div class="tvcard">
     <div class="ba-slider" data-name="BRAXTON">
+      
 
       <button class="ba-toggle" type="button">SEE AFTER</button>
 
@@ -4496,7 +4509,7 @@ function showFeedback(msg, success) {
     });
   });
 
-  // Before / after toggle
+ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.ba-slider').forEach((slider) => {
     const beforeWrap = slider.querySelector('.ba-before');
     const afterWrap = slider.querySelector('.ba-after');
@@ -4506,47 +4519,104 @@ function showFeedback(msg, success) {
 
     if (!beforeWrap || !afterWrap || !beforeVideo || !afterVideo || !toggle) return;
 
-    let showingAfter = false;
+    slider.style.position = 'relative';
+    slider.style.overflow = 'hidden';
+
+    [beforeWrap, afterWrap].forEach((wrap) => {
+      wrap.style.position = 'absolute';
+      wrap.style.inset = '0';
+      wrap.style.width = '100%';
+      wrap.style.height = '100%';
+      wrap.style.transition = 'opacity 0.25s ease';
+    });
 
     function play(video) {
+      video.muted = true;
+      video.playsInline = true;
+
       const p = video.play();
-      if (p) p.catch(() => {});
+      if (p) {
+        p.catch(() => {
+          video.load();
+          video.play().catch(() => {});
+        });
+      }
     }
 
     function pause(video) {
       video.pause();
-      video.currentTime = 0;
     }
 
-    function update() {
-      if (showingAfter) {
-        beforeWrap.classList.remove('is-active');
-        afterWrap.classList.add('is-active');
+    function showBefore() {
+      slider.dataset.view = 'before';
 
-        pause(beforeVideo);
-        play(afterVideo);
+      beforeWrap.classList.add('is-active');
+      afterWrap.classList.remove('is-active');
 
-        toggle.textContent = 'SEE BEFORE';
-      } else {
-        afterWrap.classList.remove('is-active');
-        beforeWrap.classList.add('is-active');
+      beforeWrap.style.opacity = '1';
+      beforeWrap.style.visibility = 'visible';
+      beforeWrap.style.pointerEvents = 'auto';
+      beforeWrap.style.zIndex = '2';
 
-        pause(afterVideo);
+      afterWrap.style.opacity = '0';
+      afterWrap.style.visibility = 'hidden';
+      afterWrap.style.pointerEvents = 'none';
+      afterWrap.style.zIndex = '1';
+
+      pause(afterVideo);
+
+      requestAnimationFrame(() => {
+        beforeVideo.currentTime = 0;
         play(beforeVideo);
+      });
 
-        toggle.textContent = 'SEE AFTER';
-      }
+      toggle.textContent = 'SEE AFTER';
+      toggle.classList.add('is-before');
+      toggle.classList.remove('is-after');
+    }
+
+    function showAfter() {
+      slider.dataset.view = 'after';
+
+      afterWrap.classList.add('is-active');
+      beforeWrap.classList.remove('is-active');
+
+      afterWrap.style.opacity = '1';
+      afterWrap.style.visibility = 'visible';
+      afterWrap.style.pointerEvents = 'auto';
+      afterWrap.style.zIndex = '2';
+
+      beforeWrap.style.opacity = '0';
+      beforeWrap.style.visibility = 'hidden';
+      beforeWrap.style.pointerEvents = 'none';
+      beforeWrap.style.zIndex = '1';
+
+      pause(beforeVideo);
+
+      requestAnimationFrame(() => {
+        afterVideo.currentTime = 0;
+        play(afterVideo);
+      });
+
+      toggle.textContent = 'SEE BEFORE';
+      toggle.classList.remove('is-before');
+      toggle.classList.add('is-after');
     }
 
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      showingAfter = !showingAfter;
-      update();
+
+      if (slider.dataset.view === 'before') {
+        showAfter();
+      } else {
+        showBefore();
+      }
     });
 
-    update();
+    showBefore();
   });
+});
 
   // Infinite auto-scroll tracks
   (function () {
@@ -4622,66 +4692,7 @@ function showFeedback(msg, success) {
   })();
 </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.ba-slider').forEach((slider) => {
-    const beforeWrap = slider.querySelector('.ba-before');
-    const afterWrap = slider.querySelector('.ba-after');
-    const beforeVideo = beforeWrap?.querySelector('video');
-    const afterVideo = afterWrap?.querySelector('video');
-    const toggle = slider.querySelector('.ba-toggle');
-    toggle.classList.add('is-before');
-    if (!beforeWrap || !afterWrap || !beforeVideo || !afterVideo || !toggle) return;
 
-    let showingAfter = false;
-
-    function playVideo(video) {
-      const p = video.play();
-      if (p !== undefined) p.catch(() => {});
-    }
-
-    function pauseVideo(video) {
-      video.pause();
-    }
-
-  function updateView() {
-  if (showingAfter) {
-    beforeWrap.classList.remove('is-active');
-    afterWrap.classList.add('is-active');
-
-    pauseVideo(beforeVideo);
-    playVideo(afterVideo);
-
-    toggle.textContent = 'SEE BEFORE';
-
-    toggle.classList.add('is-after');
-    toggle.classList.remove('is-before');
-
-  } else {
-    afterWrap.classList.remove('is-active');
-    beforeWrap.classList.add('is-active');
-
-    pauseVideo(afterVideo);
-    playVideo(beforeVideo);
-
-    toggle.textContent = 'SEE AFTER';
-
-    toggle.classList.add('is-before');
-    toggle.classList.remove('is-after');
-  }
-}
-
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      showingAfter = !showingAfter;
-      updateView();
-    });
-
-    updateView();
-  });
-});
-</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -4722,96 +4733,41 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
+
 document.addEventListener('DOMContentLoaded', () => {
-  const sliders = document.querySelectorAll('.ba-slider');
-
-  function safePlay(video) {
-    if (!video) return;
-    const p = video.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
-  }
-
-  function syncSliderPlayback(slider) {
-    const activeWrap = slider.querySelector('.ba-video.is-active');
-    const inactiveWraps = slider.querySelectorAll('.ba-video:not(.is-active)');
-
-    inactiveWraps.forEach((wrap) => {
-      const v = wrap.querySelector('video');
-      if (v) v.pause();
-    });
-
-    if (!activeWrap) return;
-    const activeVideo = activeWrap.querySelector('video');
-    if (!activeVideo) return;
-
-    const rect = slider.getBoundingClientRect();
-    const onScreen = rect.bottom > 0 && rect.top < window.innerHeight;
-
-    if (onScreen) {
-      safePlay(activeVideo);
-    } else {
-      activeVideo.pause();
-    }
-  }
-
-  sliders.forEach((slider) => {
-    const beforeWrap = slider.querySelector('.ba-before');
-    const afterWrap = slider.querySelector('.ba-after');
-    const toggle = slider.querySelector('.ba-toggle');
-
-    if (!beforeWrap || !afterWrap || !toggle) return;
-
-    function showBefore() {
-      beforeWrap.classList.add('is-active');
-      afterWrap.classList.remove('is-active');
-      toggle.textContent = 'SEE AFTER';
-      toggle.classList.add('is-before');
-      toggle.classList.remove('is-after');
-      syncSliderPlayback(slider);
-    }
-
-    function showAfter() {
-      afterWrap.classList.add('is-active');
-      beforeWrap.classList.remove('is-active');
-      toggle.textContent = 'SEE BEFORE';
-      toggle.classList.add('is-after');
-      toggle.classList.remove('is-before');
-      syncSliderPlayback(slider);
-    }
-
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (afterWrap.classList.contains('is-active')) {
-        showBefore();
-      } else {
-        showAfter();
-      }
-    });
-
-    showBefore();
-  });
+  const observedVideos = document.querySelectorAll(
+    '.ba-slider video, .tvcard video'
+  );
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const slider = entry.target;
-      const activeVideo = slider.querySelector('.ba-video.is-active video');
-      const inactiveVideos = slider.querySelectorAll('.ba-video:not(.is-active) video');
-
-      inactiveVideos.forEach((video) => video.pause());
-
-      if (!activeVideo) return;
+      const video = entry.target;
 
       if (entry.isIntersecting) {
-        safePlay(activeVideo);
+        const inBeforeAfter = video.closest('.ba-slider');
+        const inTestimonial = video.closest('.tvcard');
+
+        if (inBeforeAfter) {
+          const wrap = video.closest('.ba-video');
+          if (wrap && wrap.classList.contains('is-active')) {
+            video.play().catch(() => {});
+          }
+        } else if (inTestimonial) {
+          const playBtn = video.closest('.tvcard')?.querySelector('.tvcard-play-btn');
+          const isPlaying = playBtn?.classList.contains('is-playing');
+          if (isPlaying) {
+            video.play().catch(() => {});
+          }
+        }
       } else {
-        activeVideo.pause();
+        video.pause();
       }
     });
-  }, { threshold: 0.35 });
+  }, {
+    threshold: 0.35
+  });
 
-  document.querySelectorAll('.ba-slider').forEach((slider) => observer.observe(slider));
+  observedVideos.forEach((video) => observer.observe(video));
 });
 </script>
 
