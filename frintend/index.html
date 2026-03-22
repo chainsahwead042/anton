@@ -106,52 +106,49 @@
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 1000;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 60px;
-    background-color: rgba(6,8,15,0.94);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' fill='none'/%3E%3Crect x='1' y='1' width='57' height='17' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='0.6'/%3E%3Crect x='62' y='1' width='57' height='17' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='0.6'/%3E%3Crect x='-29' y='22' width='57' height='17' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='0.6'/%3E%3Crect x='32' y='22' width='57' height='17' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='0.6'/%3E%3Crect x='93' y='22' width='57' height='17' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='0.6'/%3E%3C/svg%3E");
-    background-size: 120px 40px;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    padding: 16px 48px;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    background: rgba(0,0,0,0.95);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   }
 
   .nav-brand {
     font-family: 'Rubik Dirt', sans-serif;
     font-size: 20px; letter-spacing: 2px;
     color: #ffffff; text-decoration: none;
-    animation: navGlow 3s ease-in-out infinite;
+    transition: opacity 0.2s;
   }
 
-  @keyframes navGlow {
-    0%, 100% { text-shadow: 0 0 1px rgba(255,255,255,0.5), 0 0 8px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.2); }
-    50% { text-shadow: 0 0 1px rgba(255,255,255,0.6), 0 0 12px rgba(255,255,255,1), 0 0 28px rgba(255,255,255,0.6), 0 0 55px rgba(255,255,255,0.3); }
-  }
+  .nav-brand:hover { opacity: 0.8; }
 
   .nav-cta {
     background: transparent;
     color: var(--accent);
     font-family: 'DM Mono', monospace;
-    font-size: 8px; letter-spacing: 2px;
-    padding: 12px 28px;
-    border: 1.5px solid var(--accent);
-    border-radius: 2px;
+    font-size: 10px; letter-spacing: 2.5px;
+    padding: 11px 28px;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
     cursor: none; text-decoration: none;
     display: inline-block;
-    transition: color 0.2s, border-color 0.2s, transform 0.2s;
-    z-index: 1;
+    transition: all 0.25s ease;
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    animation: ctaGlow 2.5s ease-in-out infinite;
-  }
-
-  @keyframes ctaGlow {
-    0%, 100% { box-shadow: 0 0 6px rgba(209,84,26,0.4), 0 0 14px rgba(209,84,26,0.2), inset 0 0 6px rgba(209,84,26,0.05); border-color: var(--accent); }
-    50% { box-shadow: 0 0 10px rgba(255,156,25,0.7), 0 0 24px rgba(255,156,25,0.4), 0 0 40px rgba(209,84,26,0.2), inset 0 0 10px rgba(255,156,25,0.1); border-color: #ff9c19; }
+    text-transform: uppercase;
   }
 
   .nav-cta:hover,
   .nav-cta.aura-active {
-    color: #ffffff;
-    border-color: rgba(255,255,255,0.85);
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 20px rgba(209,84,26,0.4);
     transform: translateY(-1px);
   }
 
@@ -169,44 +166,93 @@
 
   #hero {
     width: 100%;
-    min-height: auto;
-    display: flex; flex-direction: column; justify-content: flex-start;
-    padding: 100px 60px 60px;
-    position: relative; overflow: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
   }
 
   .hero-glow {
-    position: absolute; width: 700px; height: 700px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,213,176,0.05) 0%, transparent 70%);
-    top: -200px; right: -200px; pointer-events: none;
+    position: absolute; width: 900px; height: 900px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(209,84,26,0.06) 0%, transparent 65%);
+    top: -300px; right: -300px; pointer-events: none;
   }
 
   .hero-glow2 {
-    position: absolute; width: 400px; height: 400px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(239,68,68,0.04) 0%, transparent 70%);
-    bottom: 0; left: -100px; pointer-events: none;
+    position: absolute; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(209,84,26,0.04) 0%, transparent 65%);
+    bottom: -200px; left: -200px; pointer-events: none;
   }
 
+  /* Center glow behind the statement */
+  .hero-glow-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(209,84,26,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Eyebrow */
   .hero-eyebrow {
-    font-size: 10px; letter-spacing: 5px;
-    color: var(--accent); opacity: 0.7;
-    margin-bottom: 20px;
-    animation: fadeUp 0.8s ease both;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--accent);
+    opacity: 0.7;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    animation: fadeUp 0.6s ease both;
   }
 
+  /* Main headline */
   h1.hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(38px, 7vw, 130px);
-    line-height: 1.05; color: #ffffff;
+    font-size: clamp(44px, 8vw, 140px);
+    line-height: 1.02;
+    color: #ffffff;
     animation: fadeUp 0.8s 0.1s ease both;
-    letter-spacing: 0.18em; word-spacing: 0.25em;
-    word-break: keep-all; overflow-wrap: normal;
-    white-space: normal; text-align: center;
-    margin-left: auto; margin-right: auto;
+    letter-spacing: 0.12em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    white-space: normal;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
   }
 
   h1.hero-title .gold { color: var(--accent); }
   h1.hero-title .dim  { color: var(--border2); }
+
+  /* The secondary line — different weight for contrast */
+  .hero-title-secondary {
+    display: block;
+    color: var(--muted2);
+    font-size: 0.55em;
+    letter-spacing: 0.35em;
+    margin-top: 8px;
+    opacity: 0.6;
+  }
 
   /* Hero "ENGINEERED" neon flicker */
   .hero-training-wrap {
@@ -248,6 +294,39 @@
     color: #FF8C00;
     animation: trainingFlicker 7.4s linear infinite;
     animation-delay: 0.5s;
+  }
+
+  /* Tagline below the headline */
+  .hero-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.4vw, 17px);
+    color: var(--muted2);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    max-width: 520px;
+    margin: 36px auto 0;
+    text-align: center;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+
+  /* Divider line */
+  .hero-divider {
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 32px auto;
+    opacity: 0.5;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  /* Hero CTA */
+  .hero-cta-wrap {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0;
+    animation: fadeUp 0.8s 0.35s ease both;
   }
 
   .hero-pillars {
@@ -409,7 +488,32 @@
     width: 100%; height: 100%; border: none;
   }
 
-  .video-after-cta { margin-top: 40px; text-align: center; }
+  .video-after-cta { margin-top: 40px; padding-bottom: 60px; text-align: center; }
+
+  .video-after-cta .btn-primary {
+    background: #000;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    padding: 20px 52px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    border-radius: 4px;
+    box-shadow:
+      0 0 12px rgba(209,84,26,0.35),
+      0 0 28px rgba(209,84,26,0.15),
+      inset 0 0 12px rgba(209,84,26,0.05);
+    transition: all 0.3s ease;
+  }
+
+  .video-after-cta .btn-primary:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow:
+      0 0 20px rgba(209,84,26,0.6),
+      0 0 40px rgba(209,84,26,0.3),
+      0 0 60px rgba(209,84,26,0.15);
+    transform: translateY(-2px);
+  }
 
   /* ══════════════════════════════════════
      COACH / ABOUT SECTION
@@ -1060,12 +1164,210 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ══════════════════════════════════════
+     COACH SECTION — RESTRUCTURED
+  ══════════════════════════════════════ */
+  .about-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .coach-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  .coach-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .coach-header .section-label {
+    justify-content: center;
+  }
+
+  .coach-header .section-label::after {
+    display: none;
+  }
+
+  .coach-header .section-title {
+    text-align: center;
+  }
+
+  .coach-header .section-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .coach-photo-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .coach-photo-col .result-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .coach-details-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .coach-about-cards {
+    margin-top: 0;
+  }
+
+  .coach-cta-wrap {
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .coach-cta-wrap .btn-primary {
+    display: inline-block;
+  }
+
+  /* ══════════════════════════════════════
+     PHILOSOPHY SECTION — RESTRUCTURED
+  ══════════════════════════════════════ */
+  .philosophy-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .philosophy-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .philosophy-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .philosophy-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .philosophy-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .philosophy-header .section-label {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .philosophy-header .section-label::after {
+    display: none;
+  }
+
+  .philosophy-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .philosophy-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--muted2);
+    line-height: 1.85;
+    letter-spacing: 0.03em;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .philosophy-flow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    counter-reset: philosophy-step;
+  }
+
+  .philosophy-step {
+    background: rgba(17,17,20,0.7);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+
+  .philosophy-step::before {
+    counter-increment: philosophy-step;
+    content: counter(philosophy-step, decimal-leading-zero);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--accent);
+    opacity: 0.15;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    line-height: 1;
+  }
+
+  .philosophy-step:hover {
+    border-color: rgba(209,84,26,0.4);
+    box-shadow: -3px 0 18px rgba(209,84,26,0.12), 3px 0 18px rgba(209,84,26,0.12);
+  }
+
+  .philosophy-step--highlight {
+    border-color: var(--accent);
+    box-shadow: -3px 0 18px rgba(209,84,26,0.18), 3px 0 18px rgba(209,84,26,0.18), 0 3px 18px rgba(209,84,26,0.10), 0 -3px 18px rgba(209,84,26,0.10);
+  }
+
+  .philosophy-step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .philosophy-step-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted2);
+    line-height: 1.85;
+    letter-spacing: 0.03em;
+  }
+
+  .philosophy-step-text strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ══════════════════════════════════════
      RESPONSIVE — TABLET (≤ 900px)
   ══════════════════════════════════════ */
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     .section { padding: 60px 24px; }
     .cta-banner { padding: 60px 24px; }
+    .coach-hero { grid-template-columns: 1fr; gap: 32px; }
+    .coach-details-col { order: 1; }
+    .coach-photo-col { order: 2; }
     #coach { grid-template-columns: 1fr; gap: 32px; }
     .coach-info-stack { order: 1; }
     #coach > .result-card { order: 2; }
@@ -1075,7 +1377,7 @@
     .qualifier-strip { grid-template-columns: 1fr 1fr; }
     .form-grid { grid-template-columns: 1fr; }
     .hero-stats-row { gap: 24px; }
-    #hero { padding: 100px 24px 60px; }
+    #hero { padding: 120px 24px 80px; }
     .tscroll-track:not(.results-video-scroll) .tscroll-nav-btn { display: none; }
     .results-video-scroll .tscroll-nav-btn { display: flex; }
     #page-progress-slider { display: none; }
@@ -1091,21 +1393,35 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; width: 100%;
       display: flex; flex-direction: row; align-items: center; justify-content: space-between;
-      gap: 12px; padding: 14px 16px;
+      gap: 12px; padding: 12px 16px;
       border-radius: 0; margin: 0;
-      background: rgba(8, 8, 8, 0.96);
-      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-      box-shadow: none; border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      box-shadow: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .nav-brand { text-align: left; font-size: 20px; line-height: 1; margin: 0; flex: 1; }
-    .nav-cta { width: auto; white-space: nowrap; text-align: center; font-size: 10px; padding: 12px 14px; min-height: auto; flex-shrink: 0; }
+    .nav-brand { text-align: left; font-size: 18px; line-height: 1; margin: 0; flex: 1; }
+    .nav-cta {
+      width: auto; white-space: nowrap; text-align: center;
+      font-size: 9px; padding: 10px 16px;
+      min-height: auto; flex-shrink: 0;
+      border-radius: 4px;
+    }
 
-    #hero { padding: 96px 16px 48px; text-align: center; }
+    #hero { padding: 100px 20px 60px; min-height: 100vh; min-height: 100dvh; text-align: center; }
     #hero > * { text-align: center !important; }
 
     .hero-training-wrap { display: inline; margin: 0; white-space: normal; }
     .hero-sub { margin: 22px auto 0; text-align: center !important; max-width: 100%; }
+    .hero-tagline { font-size: 14px; max-width: 100%; padding: 0 8px; }
+    .hero-eyebrow { font-size: 10px; letter-spacing: 4px; margin-bottom: 24px; }
+    h1.hero-title { font-size: clamp(34px, 11vw, 80px); letter-spacing: 0.06em; }
+    .hero-title-secondary { font-size: 0.48em; letter-spacing: 0.2em; margin-top: 6px; }
+    .hero-divider { margin: 24px auto; }
+    .hero-cta-wrap { flex-direction: column; align-items: center; width: 100%; }
+    .hero-cta-wrap .btn-primary,
+    .hero-cta-wrap .btn-ghost { width: 100%; max-width: 320px; text-align: center; }
 
     .hero-pillars { justify-content: center; gap: 10px; }
     .hero-pillar { font-size: clamp(18px, 7vw, 34px); letter-spacing: 0.12em; white-space: normal; }
@@ -1121,15 +1437,24 @@
       width: 100%; text-align: center; padding: 16px 18px; font-size: 11px;
     }
 
-    .section, .cta-banner, .submax-intro-section, .video-wrap, .footer-sub, footer {
+    .section, .cta-banner, .submax-intro-section, .philosophy-section, .video-wrap, .footer-sub, footer {
       padding-left: 16px !important; padding-right: 16px !important;
     }
     .section { padding-top: 52px !important; padding-bottom: 52px !important; }
 
-    .section-title, .video-title, .cta-banner-title { font-size: clamp(30px, 10vw, 48px); line-height: 1; }
+    /* ── Mobile centering for ALL section content ── */
+    .section-label { justify-content: center; }
+    .section-label::after { display: none; }
+    .section-title, .video-title, .cta-banner-title {
+      font-size: clamp(30px, 10vw, 48px); line-height: 1;
+      text-align: center;
+    }
 
     .section-subtitle, .video-sub, .cta-banner-sub, .coach-bio, .qual-text, .result-desc, .tcard-text {
       font-size: 14px; line-height: 1.7; max-width: 100%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     #coach, .submax-cards, .system-grid, .results-grid, .testimonials-grid,
@@ -1164,8 +1489,8 @@
 
     .tvcard-video-wrap, .results-mini-ba, .ba-slider { border-radius: 20px; }
     .tvcard-play-btn { width: 100%; min-height: 50px; padding: 13px 18px; font-size: 12px; letter-spacing: 1.8px; gap: 10px; }
-    .tvcard-name { font-size: 22px; letter-spacing: 2.8px; text-align: left; }
-    .tvcard-desc { font-size: 12px; line-height: 1.7; text-align: left; }
+    .tvcard-name { font-size: 22px; letter-spacing: 2.8px; text-align: center; }
+    .tvcard-desc { font-size: 12px; line-height: 1.7; text-align: center; }
 
     .results-mini-ba { aspect-ratio: 4 / 5.35; border-radius: 20px; }
     .results-mini-ba .ba-toggle-btn { max-width: none; width: calc(100% - 24px); bottom: 12px; min-height: 50px; padding: 12px 18px; font-size: 11px; letter-spacing: 1.7px; }
@@ -1215,6 +1540,50 @@
 
     footer, .footer-sub { padding-inline: 20px; }
     .footer-sub-inner { flex-direction: column; gap: 24px; }
+
+    /* ── Coach section mobile centering ── */
+    .coach-hero { grid-template-columns: 1fr !important; gap: 28px; }
+    .coach-details-col { order: 1; text-align: center; }
+    .coach-photo-col { order: 2; }
+    .coach-photo-col .result-card { max-width: 340px; }
+    .coach-header { margin-bottom: 32px; }
+    .cs-label { text-align: center; }
+    .coach-stat { text-align: center; }
+    .about-section { padding: 60px 16px !important; background-attachment: scroll !important; }
+
+    /* ── Philosophy section mobile ── */
+    .philosophy-section { padding: 60px 16px !important; }
+    .philosophy-flow { grid-template-columns: 1fr !important; }
+    .philosophy-title { font-size: clamp(30px, 10vw, 48px); }
+    .philosophy-step { text-align: center; }
+    .philosophy-step::before { position: static; display: block; margin-bottom: 8px; opacity: 0.25; font-size: 36px; }
+    .philosophy-step-title { text-align: center; }
+    .philosophy-step-text { text-align: center; }
+
+    /* ── SubMax intro cards mobile centering ── */
+    .submax-card { text-align: center; }
+    .submax-card-title { text-align: center; }
+
+    /* ── Result cards mobile centering ── */
+    .result-info { text-align: center; }
+    .result-name { text-align: center; }
+    .result-desc { text-align: center; }
+
+    /* ── Video section mobile centering ── */
+    .video-label { text-align: center; }
+    .video-title { text-align: center; }
+    .video-sub { text-align: center; }
+    .video-after-cta { text-align: center; }
+
+    /* ── Application section mobile centering ── */
+    #apply .section-label { justify-content: center; }
+    #apply .section-title { text-align: center; }
+    #apply .section-subtitle { text-align: center; margin-left: auto; margin-right: auto; }
+
+    /* ── Footer mobile centering ── */
+    footer { justify-content: center; text-align: center; }
+    .footer-contact { text-align: center; width: 100%; }
+    .footer-link { justify-content: center; }
   }
 
   /* ══════════════════════════════════════
@@ -1225,6 +1594,7 @@
     .submax-intro-section { padding: 60px 24px; }
     .ba-toggle-btn { font-size: 11px; padding: 10px 14px; bottom: 10px; width: calc(100% - 24px); max-width: none; }
     .testimonials-video-grid { grid-template-columns: 1fr; }
+    .philosophy-flow { gap: 16px; }
   }
 
   /* Desktop overrides */
@@ -1277,28 +1647,37 @@
   <div class="grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
+  <div class="hero-glow-center"></div>
 
-  <div style="text-align: center; width: 100%;">
-    <div style="height: 20px;"></div>
+  <div class="hero-content">
 
-    <h1 class="hero-title" style="line-height: 1.1;">
-      TRUE STRENGTH IS
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow">SUBMAX COACHING SYSTEM</div>
+
+    <!-- Main statement -->
+    <h1 class="hero-title">
+      TRUE STRENGTH IS<br>
       <span class="hero-training-wrap" style="letter-spacing: 0.03em;">
-        <span class="hero-training-letter" data-l="E">E</span>
-        <span class="hero-training-letter" data-l="N">N</span>
-        <span class="hero-training-letter" data-l="G">G</span>
-        <span class="hero-training-letter" data-l="I">I</span>
-        <span class="hero-training-letter" data-l="N">N</span>
-        <span class="hero-training-letter" data-l="E">E</span>
-        <span class="hero-training-letter" data-l="E">E</span>
-        <span class="hero-training-letter" data-l="R">R</span>
-        <span class="hero-training-letter" data-l="E">E</span>
-        <span class="hero-training-letter" data-l="D">D</span>
-        <span class="hero-training-letter" data-l=".">.</span>
+        <span class="hero-training-letter" data-l="E">E</span><span class="hero-training-letter" data-l="N">N</span><span class="hero-training-letter" data-l="G">G</span><span class="hero-training-letter" data-l="I">I</span><span class="hero-training-letter" data-l="N">N</span><span class="hero-training-letter" data-l="E">E</span><span class="hero-training-letter" data-l="E">E</span><span class="hero-training-letter" data-l="R">R</span><span class="hero-training-letter" data-l="E">E</span><span class="hero-training-letter" data-l="D">D</span><span class="hero-training-letter" data-l=".">.</span>
       </span>
-      <br>
-      NOT LEFT TO CHANCE.
+      <span class="hero-title-secondary">NOT LEFT TO CHANCE.</span>
     </h1>
+
+    <!-- Supporting tagline -->
+    <p class="hero-tagline">
+      Calisthenics coaching built on science — not ego.<br>
+      Structured programming for advanced skills at any starting point.
+    </p>
+
+    <!-- Divider -->
+    <div class="hero-divider"></div>
+
+    <!-- CTA -->
+    <div class="hero-cta-wrap">
+      <a href="https://form.typeform.com/to/IeHZ2FIw" target="_blank" rel="noopener" class="btn-primary">APPLY FOR COACHING</a>
+      <a href="#video-section" class="btn-ghost">WATCH THE METHOD ↓</a>
+    </div>
+
   </div>
 </section>
 
@@ -1320,9 +1699,10 @@
     <iframe
       id="yt-iframe"
       width="560" height="315"
-      src="https://www.youtube.com/embed/WXLxvGRDpWg"
+      data-src="https://www.youtube.com/embed/WXLxvGRDpWg"
       title="YouTube video player"
       frameborder="0"
+      loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen>
     </iframe>
@@ -1352,18 +1732,14 @@
         <div class="ba-slider" data-name="KEVIN">
           <button class="ba-toggle" type="button">SEE AFTER</button>
           <div class="ba-after ba-video" id="kevin-after">
-            <!--
             <video muted playsinline preload="none" loop poster="Client Results/Kevin/kevin-after-thumb.png">
-              <source src="Client Results/Kevin/kevin-after.mp4" type="video/mp4">
+              <source data-src="Client Results/Kevin/kevin-after.mp4" type="video/mp4">
             </video>
-            -->
           </div>
           <div class="ba-before ba-video is-active" id="kevin-before">
-              <!--
             <video muted playsinline preload="none" loop poster="Client Results/Kevin/kevin-before-thumb.png">
-              <source src="Client Results/Kevin/kevin-before.mp4" type="video/mp4">
+              <source data-src="Client Results/Kevin/kevin-before.mp4" type="video/mp4">
             </video>
-              -->
           </div>
         </div>
         <div class="result-info">
@@ -1379,18 +1755,14 @@
         <div class="ba-slider" data-name="JOSHUA">
           <button class="ba-toggle" type="button">SEE AFTER</button>
           <div class="ba-after ba-video" id="joshua-after">
-             <!--
             <video muted playsinline preload="none" loop poster="Client Results/Joshua/joshua-after-thumb.png">
-              <source src="Client Results/Joshua/joshua-after.mp4" type="video/mp4">
+              <source data-src="Client Results/Joshua/joshua-after.mp4" type="video/mp4">
             </video>
-             -->
           </div>
           <div class="ba-before ba-video is-active" id="joshua-before">
-             <!--
             <video muted playsinline preload="none" loop poster="Client Results/Joshua/joshua-before-thumb.png">
-              <source src="Client Results/Joshua/joshua-before.mp4" type="video/mp4">
+              <source data-src="Client Results/Joshua/joshua-before.mp4" type="video/mp4">
             </video>
-             -->
           </div>
         </div>
         <div class="result-info">
@@ -1406,18 +1778,14 @@
         <div class="ba-slider" data-name="TORYN">
           <button class="ba-toggle" type="button">SEE AFTER</button>
           <div class="ba-after ba-video" id="toryn-after">
-             <!--
             <video muted playsinline preload="none" loop poster="Client Results/Toryn/toryn-after-thumb.png">
-              <source src="Client Results/Toryn/toryn-after.mp4" type="video/mp4">
+              <source data-src="Client Results/Toryn/toryn-after.mp4" type="video/mp4">
             </video>
-             -->
           </div>
           <div class="ba-before ba-video is-active" id="toryn-before">
-             <!--
             <video muted playsinline preload="none" loop poster="Client Results/Toryn/toryn-before-thumb.png">
-              <source src="Client Results/Toryn/toryn-before.mp4" type="video/mp4">
+              <source data-src="Client Results/Toryn/toryn-before.mp4" type="video/mp4">
             </video>
-             -->
           </div>
         </div>
         <div class="result-info">
@@ -1433,18 +1801,14 @@
         <div class="ba-slider" data-name="BRAXTON">
           <button class="ba-toggle" type="button">SEE AFTER</button>
           <div class="ba-after ba-video" id="braxton-after">
-             <!--
             <video muted playsinline preload="none" loop poster="Client Results/Braxton/braxton-after-thumb.png">
-              <source src="Client Results/Braxton/braxton-after.mp4" type="video/mp4">
+              <source data-src="Client Results/Braxton/braxton-after.mp4" type="video/mp4">
             </video>
-            -->
           </div>
           <div class="ba-before ba-video is-active" id="braxton-before">
-             <!--
             <video muted playsinline preload="none" loop poster="Client Results/Braxton/braxton-before-thumb.png">
-              <source src="Client Results/Braxton/braxton-before.mp4" type="video/mp4">
+              <source data-src="Client Results/Braxton/braxton-before.mp4" type="video/mp4">
             </video>
-            -->
           </div>
         </div>
         <div class="result-info">
@@ -1477,18 +1841,14 @@
       <div class="ba-slider results-mini-ba" data-name="KENTO">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="kento-mini-after">
-           <!--
           <video muted playsinline preload="none" loop poster="Client Results/Kento/kento-after-thumb.png">
-            <source src="Client Results/Kento/kento-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Kento/kento-after.mp4" type="video/mp4">
           </video>
-          -->
         </div>
         <div class="ba-before ba-video is-active" id="kento-mini-before">
-           <!--
           <video muted playsinline preload="none" loop poster="Client Results/Kento/kento-before-thumb.png">
-            <source src="Client Results/Kento/kento-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Kento/kento-before.mp4" type="video/mp4">
           </video>
-          -->
         </div>
       </div>
       <div class="tvcard-name">KENTO</div>
@@ -1500,18 +1860,14 @@
       <div class="ba-slider results-mini-ba" data-name="TRISTAN">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="tristan-mini-after">
-           <!--
           <video muted playsinline preload="none" loop poster="Client Results/Tristan/tristan-after-thumb.png">
-            <source src="Client Results/Tristan/tristan-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Tristan/tristan-after.mp4" type="video/mp4">
           </video>
-           -->
         </div>
         <div class="ba-before ba-video is-active" id="tristan-mini-before">
-           <!--
           <video muted playsinline preload="none" loop poster="Client Results/Tristan/tristan-before-thumb.png">
-            <source src="Client Results/Tristan/tristan-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Tristan/tristan-before.mp4" type="video/mp4">
           </video>
-           -->
         </div>
       </div>
       <div class="tvcard-name">TRISTAN</div>
@@ -1523,18 +1879,14 @@
       <div class="ba-slider results-mini-ba" data-name="GUS">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="gus-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Gus/gus-after-thumb.png">
-            <source src="Client Results/Gus/gus-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Gus/gus-after.mp4" type="video/mp4">
           </video>
-           -->
         </div>
         <div class="ba-before ba-video is-active" id="gus-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Gus/gus-before-thumb.png">
-            <source src="Client Results/Gus/gus-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Gus/gus-before.mp4" type="video/mp4">
           </video>
-           -->
         </div>
       </div>
       <div class="tvcard-name">GUS</div>
@@ -1546,18 +1898,14 @@
       <div class="ba-slider results-mini-ba" data-name="STEVEN">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="steven-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Steven/steven-after-thumb.png">
-            <source src="Client Results/Steven/steven-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Steven/steven-after.mp4" type="video/mp4">
           </video>
-          -->
         </div>
         <div class="ba-before ba-video is-active" id="steven-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Steven/steven-before-thumb.png">
-            <source src="Client Results/Steven/steven-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Steven/steven-before.mp4" type="video/mp4">
           </video>
-          -->
         </div>
       </div>
       <div class="tvcard-name">STEVEN</div>
@@ -1569,18 +1917,14 @@
       <div class="ba-slider results-mini-ba" data-name="COLIN">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="colin-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Colin/colin-after-thumb.png">
-            <source src="Client Results/Colin/colin-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Colin/colin-after.mp4" type="video/mp4">
           </video>
-            -->
         </div>
         <div class="ba-before ba-video is-active" id="colin-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Colin/colin-before-thumb.png">
-            <source src="Client Results/Colin/colin-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Colin/colin-before.mp4" type="video/mp4">
           </video>
-            -->
         </div>
       </div>
       <div class="tvcard-name">COLIN</div>
@@ -1592,18 +1936,14 @@
       <div class="ba-slider results-mini-ba" data-name="JANAK">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="janak-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Janak/janak-after-thumb.png">
-            <source src="Client Results/Janak/janak-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Janak/janak-after.mp4" type="video/mp4">
           </video>
-            -->
         </div>
         <div class="ba-before ba-video is-active" id="janak-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Janak/janak-before-thumb.png">
-            <source src="Client Results/Janak/janak-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Janak/janak-before.mp4" type="video/mp4">
           </video>
-            -->
         </div>
       </div>
       <div class="tvcard-name">JANAK</div>
@@ -1615,18 +1955,14 @@
       <div class="ba-slider results-mini-ba" data-name="SAM">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="sam-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Sam/sam-after-thumb.png">
-            <source src="Client Results/Sam/sam-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Sam/sam-after.mp4" type="video/mp4">
           </video>
-            -->
         </div>
         <div class="ba-before ba-video is-active" id="sam-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Sam/sam-before-thumb.png">
-            <source src="Client Results/Sam/sam-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Sam/sam-before.mp4" type="video/mp4">
           </video>
-            -->
         </div>
       </div>
       <div class="tvcard-name">SAM</div>
@@ -1638,18 +1974,14 @@
       <div class="ba-slider results-mini-ba" data-name="REID">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="reid-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Reid/reid-after-thumb.png">
-            <source src="Client Results/Reid/reid-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Reid/reid-after.mp4" type="video/mp4">
           </video>
-          -->
         </div>
         <div class="ba-before ba-video is-active" id="reid-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Reid/reid-before-thumb.png">
-            <source src="Client Results/Reid/reid-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Reid/reid-before.mp4" type="video/mp4">
           </video>
-          -->
         </div>
       </div>
       <div class="tvcard-name">REID</div>
@@ -1661,18 +1993,14 @@
       <div class="ba-slider results-mini-ba" data-name="JOSH">
         <button class="ba-toggle is-before" type="button">SEE AFTER</button>
         <div class="ba-after ba-video" id="josh2-mini-after">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Josh2/josh2-after-thumb.png">
-            <source src="Client Results/Josh2/josh2-after.mp4" type="video/mp4">
+            <source data-src="Client Results/Josh2/josh2-after.mp4" type="video/mp4">
           </video>
-          -->
         </div>
         <div class="ba-before ba-video is-active" id="josh2-mini-before">
-          <!--
           <video muted playsinline preload="none" loop poster="Client Results/Josh2/josh2-before-thumb.png">
-            <source src="Client Results/Josh2/josh2-before.mp4" type="video/mp4">
+            <source data-src="Client Results/Josh2/josh2-before.mp4" type="video/mp4">
           </video>
-          -->
         </div>
       </div>
       <div class="tvcard-name">JOSH</div>
@@ -1711,7 +2039,7 @@
       <!-- 1. KENTO -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:177.78%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788395?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="kento"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788395?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="kento"></iframe>
         </div>
         <div class="tvcard-name">KENTO</div>
       </div>
@@ -1719,7 +2047,7 @@
       <!-- 2. JOSH -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:176.67%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788204?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="josh"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788204?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="josh"></iframe>
         </div>
         <div class="tvcard-name">JOSH</div>
       </div>
@@ -1727,7 +2055,7 @@
       <!-- 3. STEVEN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:178.89%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788362?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="steven"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788362?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="steven"></iframe>
         </div>
         <div class="tvcard-name">STEVEN</div>
       </div>
@@ -1735,7 +2063,7 @@
       <!-- 4. SAM -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:177.78%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788335?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="sam"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788335?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="sam"></iframe>
         </div>
         <div class="tvcard-name">SAM</div>
       </div>
@@ -1743,7 +2071,7 @@
       <!-- 5. TRISTAN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:176.67%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788170?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="tristan"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788170?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="tristan"></iframe>
         </div>
         <div class="tvcard-name">TRISTAN</div>
       </div>
@@ -1751,7 +2079,7 @@
       <!-- 6. REID -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:177.78%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788313?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="reid"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788313?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="reid"></iframe>
         </div>
         <div class="tvcard-name">REID</div>
       </div>
@@ -1759,7 +2087,7 @@
       <!-- 7. GUS -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:177.78%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175789485?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="gus"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175789485?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="gus"></iframe>
         </div>
         <div class="tvcard-name">GUS</div>
       </div>
@@ -1767,7 +2095,7 @@
       <!-- 8. TORYN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:176.67%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175788529?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="toryn"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175788529?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="toryn"></iframe>
         </div>
         <div class="tvcard-name">TORYN</div>
       </div>
@@ -1775,7 +2103,7 @@
       <!-- 9. JOHN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap" style="padding-top:177.78%;">
-          <iframe class="tvcard-video" src="https://player.vimeo.com/video/1175791935?title=0&byline=0&portrait=0&badge=0&autopause=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="john"></iframe>
+          <iframe class="tvcard-video" loading="lazy" data-src="https://player.vimeo.com/video/1175791935?title=0&byline=0&portrait=0&badge=0&autopause=0"autopause=0&autopause=0"api=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="john"></iframe>
         </div>
         <div class="tvcard-name">JOHN</div>
       </div>
@@ -1798,15 +2126,18 @@
 
   <div style="position:absolute; inset:0; background: linear-gradient(135deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%); pointer-events:none;"></div>
 
-  <div style="max-width:1200px; margin: 0 auto; position:relative; z-index:1;">
-    <div id="coach" class="reveal">
-      <div class="coach-info-stack">
-        <div class="coach-content">
-          <div class="section-label">THE COACH</div>
-          <h2 class="section-title">MEET ANTON.</h2>
-          <p class="section-subtitle">6'2". 190lbs. He disagreed.</p>
-        </div>
+  <div class="about-section-inner">
 
+    <!-- Centered header -->
+    <div class="coach-header reveal">
+      <div class="section-label">THE COACH</div>
+      <h2 class="section-title">MEET ANTON.</h2>
+      <p class="section-subtitle">6'2". 190lbs. He disagreed.</p>
+    </div>
+
+    <!-- Two-column: Stats left, Photo right -->
+    <div class="coach-hero reveal">
+      <div class="coach-details-col">
         <div class="coach-stat-grid">
           <div class="coach-stat"><div class="cs-num">5+</div><div class="cs-label">YEARS TRAINING</div></div>
           <div class="coach-stat"><div class="cs-num">2+</div><div class="cs-label">YEARS FULL-TIME COACHING</div></div>
@@ -1815,23 +2146,26 @@
         </div>
       </div>
 
-      <div class="result-card">
-        <div class="ba-slider" data-name="ANTON">
-          <div class="ba-after">
-            <img src="images/anton.png" alt="Anton after">
+      <div class="coach-photo-col">
+        <div class="result-card">
+          <div class="ba-slider" data-name="ANTON">
+            <div class="ba-after">
+              <img src="images/anton.png" alt="Anton after" loading="lazy">
+            </div>
+            <div class="ba-before">
+              <img src="images/anton.png" alt="Anton before" loading="lazy">
+            </div>
+            <button class="ba-toggle-btn" type="button">
+              <span class="ba-toggle-icon">&#9654;</span>
+              <span class="ba-toggle-text">SEE AFTER</span>
+            </button>
           </div>
-          <div class="ba-before">
-            <img src="images/anton.png" alt="Anton before">
-          </div>
-          <button class="ba-toggle-btn" type="button">
-            <span class="ba-toggle-icon">&#9654;</span>
-            <span class="ba-toggle-text">SEE AFTER</span>
-          </button>
         </div>
       </div>
     </div>
 
-    <section class="submax-intro-section">
+    <!-- About cards -->
+    <section class="submax-intro-section" style="border:none; margin-top: 48px;">
       <div class="submax-intro-wrap reveal">
         <div class="submax-cards">
           <div class="submax-card">
@@ -1854,7 +2188,11 @@
       </div>
     </section>
 
-    <a href="https://form.typeform.com/to/IeHZ2FIw" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 8px;">WORK WITH ANTON</a>
+    <!-- CTA -->
+    <div class="coach-cta-wrap reveal">
+      <a href="https://form.typeform.com/to/IeHZ2FIw" target="_blank" rel="noopener" class="btn-primary">WORK WITH ANTON</a>
+    </div>
+
   </div>
 </section>
 
@@ -1876,33 +2214,39 @@
 <!-- ════════════════════════════════════════
      SUBMAX PHILOSOPHY SECTION
 ════════════════════════════════════════ -->
-<div class="full-section">
-  <div class="cta-banner reveal">
-    <div class="cta-banner-bg"></div>
-    <h2 class="cta-banner-title">THE PHILOSOPHY BEHIND<br>SUBMAX</h2>
-  </div>
-</div>
+<section class="philosophy-section">
+  <div class="philosophy-inner">
 
-<section class="submax-intro-section">
-  <div class="submax-intro-wrap reveal">
-    <div class="submax-cards">
-      <div class="submax-card">
-        <div class="submax-card-title">WHERE 99% FAIL</div>
-        <p>Most athletes spend years training calisthenics the wrong way — more volume, harder effort, no real progress.</p>
+    <div class="philosophy-header reveal">
+      <div class="section-label">THE METHOD</div>
+      <h2 class="philosophy-title">THE PHILOSOPHY<br>BEHIND SUBMAX</h2>
+      <p class="philosophy-subtitle">
+        A smarter approach to calisthenics — built on science, not ego.
+      </p>
+    </div>
+
+    <div class="philosophy-flow reveal">
+      <div class="philosophy-step">
+        <div class="philosophy-step-title">WHERE 99% FAIL</div>
+        <p class="philosophy-step-text">Most athletes spend years training calisthenics the wrong way — more volume, harder effort, no real progress.</p>
       </div>
-      <div class="submax-card">
-        <div class="submax-card-title">THE TRUTH</div>
-        <p>True strength isn't built through constant maximal effort. It's built through <strong>undulated submaximal training</strong> — managing intensity, fatigue, and coordination.</p>
+
+      <div class="philosophy-step">
+        <div class="philosophy-step-title">THE TRUTH</div>
+        <p class="philosophy-step-text">True strength isn't built through constant maximal effort. It's built through <strong>undulated submaximal training</strong> — managing intensity, fatigue, and coordination.</p>
       </div>
-      <div class="submax-card">
-        <div class="submax-card-title">THE SOLUTION</div>
-        <p>After 6 years of training and studying strength literature, Anton built <strong>SubMax</strong> — powerlifting principles fused with calisthenics skill development.</p>
+
+      <div class="philosophy-step">
+        <div class="philosophy-step-title">THE SOLUTION</div>
+        <p class="philosophy-step-text">After 6 years of training and studying strength literature, Anton built <strong>SubMax</strong> — powerlifting principles fused with calisthenics skill development.</p>
       </div>
-      <div class="submax-card submax-card--highlight">
-        <div class="submax-card-title">THE RESULT</div>
-        <p>The result: a centralized system that builds <strong>elite strength and advanced skills</strong> — structured, sustainable, for any starting point.</p>
+
+      <div class="philosophy-step philosophy-step--highlight">
+        <div class="philosophy-step-title">THE RESULT</div>
+        <p class="philosophy-step-text">A centralized system that builds <strong>elite strength and advanced skills</strong> — structured, sustainable, for any starting point.</p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1997,6 +2341,87 @@
 })();
 
 // ═══════════════════════════════════════
+// NAV SCROLL EFFECT
+// ═══════════════════════════════════════
+(function() {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  function onScroll() {
+    if (window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// ═══════════════════════════════════════
+// VIMEO IFRAME MUTUAL EXCLUSION
+// ═══════════════════════════════════════
+// Uses the Vimeo Player postMessage API to pause all other Vimeo
+// iframes when one starts playing. No external SDK needed.
+(function() {
+  window.addEventListener('message', function(event) {
+    // Vimeo sends postMessage events with method/event data
+    var data;
+    try {
+      data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+    } catch(e) { return; }
+
+    // Vimeo fires event: "play" when a video starts
+    if (data && data.event === 'play') {
+      var playingIframe = null;
+      // Find which iframe sent the play event by matching origin
+      document.querySelectorAll('iframe.tvcard-video').forEach(function(iframe) {
+        try {
+          // The iframe that sent the message will have a matching contentWindow
+          if (iframe.contentWindow === event.source) {
+            playingIframe = iframe;
+          }
+        } catch(e) {}
+      });
+
+      // Pause all OTHER Vimeo iframes
+      if (playingIframe) {
+        document.querySelectorAll('iframe.tvcard-video').forEach(function(iframe) {
+          if (iframe !== playingIframe && iframe.contentWindow) {
+            try {
+              iframe.contentWindow.postMessage(JSON.stringify({ method: 'pause' }), '*');
+            } catch(e) {}
+          }
+        });
+      }
+    }
+  });
+
+  // Enable Vimeo JS API listening on each iframe once it's loaded
+  // by adding ?api=1 origin param is already implicit in postMessage
+  function enableVimeoApi(iframe) {
+    if (!iframe || !iframe.src || iframe.dataset.vimeoApiReady === 'true') return;
+    iframe.dataset.vimeoApiReady = 'true';
+    iframe.addEventListener('load', function() {
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: 'play' }), '*');
+      } catch(e) {}
+    });
+    // If already loaded
+    if (iframe.src && iframe.dataset.lazyActivated === 'true') {
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: 'play' }), '*');
+      } catch(e) {}
+    }
+  }
+
+  // Observe for iframe activation and hook up API
+  var vimeoObserver = new MutationObserver(function() {
+    document.querySelectorAll('iframe.tvcard-video[src]').forEach(enableVimeoApi);
+  });
+  vimeoObserver.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['src'] });
+
+  // Also hook up any already-loaded iframes
+  document.querySelectorAll('iframe.tvcard-video[src]').forEach(enableVimeoApi);
+})();
+
+// ═══════════════════════════════════════
 // RADIO BUTTONS
 // ═══════════════════════════════════════
 document.querySelectorAll('.radio-group').forEach(function(group) {
@@ -2051,7 +2476,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     video.playsInline = true;
     video.muted = true;
     video.setAttribute('playsinline', '');
-    video.setAttribute('preload', 'metadata');
+    // Keep preload=none — lazy loader will inject sources when near viewport
+    video.setAttribute('preload', 'none');
     video.removeAttribute('autoplay');
     video.removeAttribute('loop');
   }
@@ -2103,6 +2529,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
         return;
       }
 
+      // Ensure lazy-loaded sources are injected before playing
+      if (typeof window.activateVideo === 'function') window.activateVideo(video);
       video.muted = false;
       var playPromise = video.play();
       if (playPromise && typeof playPromise.catch === 'function') {
@@ -2124,7 +2552,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     video.currentTime = 0;
     video.playsInline = true;
     video.setAttribute('playsinline', '');
-    video.setAttribute('preload', 'metadata');
+    video.setAttribute('preload', 'none');
     video.removeAttribute('autoplay');
     video.removeAttribute('muted');
 
@@ -2181,15 +2609,93 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 })();
 
 // ═══════════════════════════════════════
-// YT IFRAME SHOW
+// LAZY LOADING — IFRAMES (YouTube + Vimeo)
 // ═══════════════════════════════════════
+// Iframes use data-src instead of src. We inject src when they
+// scroll into view, preventing 10+ heavy player boots on page load.
 (function() {
-  var ytIframe = document.getElementById('yt-iframe');
-  if (ytIframe && ytIframe.src) {
-    ytIframe.style.display = 'block';
-    var ph = document.getElementById('video-placeholder');
-    if (ph) ph.style.display = 'none';
+  function activateIframe(iframe) {
+    if (!iframe || iframe.dataset.lazyActivated === 'true') return;
+    if (!iframe.dataset.src) return;
+    iframe.src = iframe.dataset.src;
+    iframe.dataset.lazyActivated = 'true';
   }
+
+  // Expose globally for the auto-scroll duplicator
+  window.activateIframe = activateIframe;
+
+  // For iframes inside horizontal scroll containers, observe the
+  // scroll track wrapper and activate all iframes inside when visible.
+  // For standalone iframes (like YouTube), observe them directly.
+  var targets = [];
+  var handledTracks = [];
+
+  document.querySelectorAll('iframe[data-src]').forEach(function(iframe) {
+    var track = iframe.closest('.tscroll-track');
+    if (track) {
+      if (handledTracks.indexOf(track) === -1) {
+        handledTracks.push(track);
+        targets.push(track);
+      }
+    } else {
+      targets.push(iframe);
+    }
+  });
+
+  if (!targets.length) return;
+
+  var iframeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      // If it's a scroll track, activate all iframes inside
+      var iframes = el.querySelectorAll ? el.querySelectorAll('iframe[data-src]') : [];
+      if (iframes.length) {
+        iframes.forEach(activateIframe);
+      } else if (el.tagName === 'IFRAME') {
+        activateIframe(el);
+      }
+      iframeObserver.unobserve(el);
+    });
+  }, { rootMargin: '400px 0px' });
+
+  targets.forEach(function(el) { iframeObserver.observe(el); });
+})();
+
+// ═══════════════════════════════════════
+// LAZY LOADING — VIDEO SOURCES
+// ═══════════════════════════════════════
+// Video <source> tags use data-src. We inject the real src when the
+// video's container scrolls near the viewport, then call load().
+// This prevents the browser from prefetching 26+ mp4 files on page load.
+(function() {
+  var lazyVideos = document.querySelectorAll('video');
+  if (!lazyVideos.length) return;
+
+  function activateVideo(video) {
+    if (video.dataset.lazyLoaded === 'true') return;
+    var sources = video.querySelectorAll('source[data-src]');
+    if (!sources.length) return;
+    sources.forEach(function(source) {
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+    });
+    video.dataset.lazyLoaded = 'true';
+    video.load(); // tell browser to start buffering
+  }
+
+  // Expose globally so BA slider and testimonial code can call it
+  window.activateVideo = activateVideo;
+
+  var videoObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      activateVideo(entry.target);
+      videoObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '400px 0px' }); // start loading 400px before visible
+
+  lazyVideos.forEach(function(video) { videoObserver.observe(video); });
 })();
 
 // ═══════════════════════════════════════
@@ -2585,6 +3091,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function safePlay(video) {
       video.muted = true;
       video.playsInline = true;
+      video.loop = true;
+      if (typeof window.activateVideo === 'function') window.activateVideo(video);
       var p = video.play();
       if (p) p.catch(function() { video.load(); video.play().catch(function(){}); });
     }
@@ -2615,6 +3123,10 @@ document.addEventListener('DOMContentLoaded', function() {
       toggle.classList.add('is-after');
     }
 
+    // Ensure both videos loop
+    beforeVideo.loop = true;
+    afterVideo.loop = true;
+
     toggle.addEventListener('click', function(e) {
       e.preventDefault(); e.stopPropagation();
       if (slider.dataset.view === 'before') showAfter();
@@ -2626,19 +3138,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ═══════════════════════════════════════
-// VIDEO VISIBILITY OBSERVER (pause off-screen videos)
+// VIDEO VISIBILITY OBSERVER (pause off-screen, play on-screen)
 // ═══════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
   var isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  // BA slider hover/scroll behavior
-  var sliders = document.querySelectorAll('.ba-slider');
-
   function safePlay(video) {
     if (!video) return;
+    // Ensure lazy sources are injected
+    if (typeof window.activateVideo === 'function') window.activateVideo(video);
     var p = video.play();
     if (p && typeof p.catch === 'function') p.catch(function(){});
   }
+
+  // BA slider hover/scroll behavior
+  var sliders = document.querySelectorAll('.ba-slider');
 
   function pauseAllBA() {
     document.querySelectorAll('.ba-slider video').forEach(function(v) { v.pause(); });
@@ -2650,10 +3164,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (isDesktop) {
     sliders.forEach(function(slider) {
-      slider.addEventListener('mouseenter', function() { pauseAllBA(); safePlay(getActiveVideo(slider)); });
-      slider.addEventListener('mouseleave', function() { var v = getActiveVideo(slider); if (v) v.pause(); });
+      slider.addEventListener('mouseenter', function() {
+        pauseAllBA();
+        var v = getActiveVideo(slider);
+        if (v) safePlay(v);
+      });
+      slider.addEventListener('mouseleave', function() {
+        var v = getActiveVideo(slider);
+        if (v) v.pause();
+      });
     });
   } else {
+    // Mobile: only play BA videos when >40% visible
     var sliderObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         var slider = entry.target;
@@ -2665,27 +3187,28 @@ document.addEventListener('DOMContentLoaded', function() {
     sliders.forEach(function(s) { sliderObserver.observe(s); });
   }
 
-  // General video visibility observer
+  // General video visibility: pause when off-screen, resume when on-screen (if was playing)
   var observedVideos = document.querySelectorAll('.ba-slider video, .tvcard video');
-  var videoObserver = new IntersectionObserver(function(entries) {
+  var videoVisibilityObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       var video = entry.target;
       if (entry.isIntersecting) {
+        // Only auto-resume if the video was in an active state
         var inBA = video.closest('.ba-slider');
         var inTestimonial = video.closest('.tvcard');
         if (inBA) {
           var wrap = video.closest('.ba-video');
-          if (wrap && wrap.classList.contains('is-active')) video.play().catch(function(){});
+          if (wrap && wrap.classList.contains('is-active')) safePlay(video);
         } else if (inTestimonial) {
           var playBtn = inTestimonial.querySelector('.tvcard-play-btn');
-          if (playBtn && playBtn.classList.contains('is-playing')) video.play().catch(function(){});
+          if (playBtn && playBtn.classList.contains('is-playing')) safePlay(video);
         }
       } else {
         video.pause();
       }
     });
-  }, { threshold: 0.35 });
-  observedVideos.forEach(function(v) { videoObserver.observe(v); });
+  }, { threshold: 0.25 });
+  observedVideos.forEach(function(v) { videoVisibilityObs.observe(v); });
 });
 
 // ═══════════════════════════════════════
@@ -2700,6 +3223,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var originalMarkup = inner.innerHTML;
     inner.innerHTML += originalMarkup;
+
+    // Activate lazy iframes in cloned content (they missed the initial observer)
+    if (typeof window.activateIframe === 'function') {
+      inner.querySelectorAll('iframe[data-src]').forEach(window.activateIframe);
+    }
+
+    // Activate lazy video sources in cloned content
+    if (typeof window.activateVideo === 'function') {
+      inner.querySelectorAll('video').forEach(window.activateVideo);
+    }
 
     if (typeof window.primeScrollerVideo === 'function') {
       inner.querySelectorAll('video').forEach(window.primeScrollerVideo);
