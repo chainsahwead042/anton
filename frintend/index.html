@@ -2803,7 +2803,114 @@ img, video, iframe, canvas {
   cursor: pointer;
 }
 
+/* =========================
+   HERO + VSL MOBILE FIXES
+   ========================= */
+@media (max-width: 768px) {
+  .hero-title {
+    text-align: center !important;
+    width: 100%;
+    margin: 0 auto;
+    line-height: 1.05 !important;
+    font-size: clamp(2.1rem, 9vw, 3.4rem);
+    letter-spacing: 0.01em;
+    padding: 0 12px;
+  }
 
+  .hero-training-wrap {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    letter-spacing: 0.01em !important;
+    max-width: 100%;
+    transform: scale(0.92);
+    transform-origin: center center;
+  }
+
+  .hero-training-letter {
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
+  .full-section,
+  #video-section,
+  .video-wrap {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .video-label {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video-title {
+    text-align: center;
+    width: 100%;
+    margin: 10px auto 0;
+    line-height: 1.08;
+  }
+
+  .video-sub {
+    text-align: center;
+    width: 100%;
+    margin: 12px auto 0;
+    max-width: 340px;
+    letter-spacing: 1.5px !important;
+    line-height: 1.5;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .video-container iframe {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+
+  .video-after-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .btn-primary {
+    background: #000 !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 140, 0, 0.65) !important;
+    box-shadow:
+      0 0 0 1px rgba(255, 140, 0, 0.15),
+      0 0 14px rgba(255, 140, 0, 0.22),
+      0 0 28px rgba(255, 140, 0, 0.14);
+    border-radius: 999px;
+    padding: 14px 22px;
+    text-align: center;
+  }
+}
 </style>
 <script id="results-mobile-arrow-hotfix">
 document.addEventListener('DOMContentLoaded', function () {
@@ -2883,7 +2990,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <!-- Main heading -->
     <h1 class="hero-title" style="line-height: 1.1;">
       TRUE STRENGTH IS
-      <span class="hero-training-wrap" style="letter-spacing: 0.03em;">
+     <span class="hero-training-wrap" style="letter-spacing: 0.01em;">
         <span class="hero-training-letter" data-l="E">E</span>
         <span class="hero-training-letter" data-l="N">N</span>
         <span class="hero-training-letter" data-l="G">G</span>
@@ -2914,10 +3021,10 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="video-label">— WATCH BEFORE YOU APPLY —</div>
     <h3 class="video-title">THE SUBMAX METHOD<br>EXPLAINED.</h3>
     <p class="video-sub" style="letter-spacing:2px;">
-      Watch Anton break down the system.<br>
-      Who it's for. Why it works,<br>
-      Watch before you apply.
-    </p>
+  Watch Anton break down the system.<br>
+  Who it’s for. Why it works.<br>
+  Watch before you apply.
+</p>
    </div>
     <!--
       ════════════════════════════════════════
@@ -3280,9 +3387,9 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="tvcard-desc">Add Reid's transformation story here.</div>
   </div>
 
-  <!-- JOSH2 -->
+  <!-- JOSH -->
   <div class="tvcard">
-    <div class="ba-slider results-mini-ba" data-name="JOSH2">
+    <div class="ba-slider results-mini-ba" data-name="JOSH">
       <button class="ba-toggle is-before" type="button">SEE AFTER</button>
 
       <div class="ba-after ba-video" id="josh2-mini-after">
@@ -3298,7 +3405,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     </div>
 
-    <div class="tvcard-name">JOSH2</div>
+    <div class="tvcard-name">JOSH</div>
     <div class="tvcard-desc">Add Josh's transformation story here.</div>
   </div>
 
