@@ -10,9 +10,8 @@
   <title>Antonthnx — Anton's SubMax Coaching</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Rubik+Dirt&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Rubik+Dirt&display=swap" rel="stylesheet">
 
   <style>
   /* ══════════════════════════════════════
@@ -97,12 +96,14 @@
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none; z-index: 999;
+    will-change: contents;
   }
 
   #fire-canvas {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none; z-index: 0; opacity: 0.9;
+    will-change: contents;
   }
 
   /* Ensure page sections sit above fire canvas */
@@ -518,6 +519,8 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     position: relative; overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
   }
   .full-section::before {
     content: '';
@@ -783,7 +786,7 @@
   .tcard:hover { border-color: var(--border2); }
 
   .tcard-quote { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 0.8; color: var(--accent); opacity: 0.15; position: absolute; top: 16px; right: 20px; }
-  .tcard-text { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 15px; color: var(--muted2); line-height: 1.8; margin-bottom: 24px; position: relative; z-index: 1; }
+  .tcard-text { font-family: 'Inter', sans-serif; font-style: italic; font-size: 15px; color: var(--muted2); line-height: 1.8; margin-bottom: 24px; position: relative; z-index: 1; }
   .tcard-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
   .tcard-author { display: flex; align-items: center; gap: 14px; }
   .tcard-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border2); flex-shrink: 0; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--muted); }
@@ -1135,6 +1138,7 @@
     position: relative;
     margin-top: 5px;
     overflow: hidden;
+    contain: layout style;
   }
 
   .tscroll-inner {
@@ -1903,17 +1907,6 @@
 <canvas id="aura-canvas"></canvas>
 <canvas id="fire-canvas"></canvas>
 
-<!-- SVG filter for neon grain on ENGINEERED text -->
-<svg width="0" height="0" style="position:absolute;">
-  <defs>
-    <filter id="grain-text" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.4" numOctaves="4" seed="7" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-      <feComposite in="displaced" in2="SourceGraphic" operator="in"/>
-    </filter>
-  </defs>
-</svg>
-
 <!-- ════════════════════════════════════════
      NAVIGATION
 ════════════════════════════════════════ -->
@@ -2507,15 +2500,15 @@
 <div class="skills-showcase">
   <div class="skills-showcase-grid">
     <div class="skills-showcase-item">
-      <img src="Images/skill4.JPG" alt="One arm handstand" loading="lazy">
+      <img src="Images/skill4.JPG" alt="One arm handstand" loading="lazy" decoding="async">
       <span class="skills-showcase-label">ONE ARM HANDSTAND</span>
     </div>
     <div class="skills-showcase-item">
-      <img src="Images/skill3.JPG" alt="Front lever" loading="lazy">
+      <img src="Images/skill3.JPG" alt="Front lever" loading="lazy" decoding="async">
       <span class="skills-showcase-label">FRONT LEVER</span>
     </div>
     <div class="skills-showcase-item">
-      <img src="Images/skill1.jpg" alt="Advanced calisthenics skill" loading="lazy">
+      <img src="Images/skill1.jpg" alt="Advanced calisthenics skill" loading="lazy" decoding="async">
       <span class="skills-showcase-label">XXX</span>
     </div>
     <div class="skills-showcase-item wide">
@@ -2569,13 +2562,13 @@
 ════════════════════════════════════════ -->
 <div class="pre-apply-strip">
   <div class="pre-apply-strip-item">
-    <img src="Images/pic2.jpg" alt="Anton physique" loading="lazy">
+    <img src="Images/pic2.jpg" alt="Anton physique" loading="lazy" decoding="async">
   </div>
   <div class="pre-apply-strip-item">
-    <img src="Images/pic1.jpg" alt="Handstand push-up" loading="lazy">
+    <img src="Images/pic1.jpg" alt="Handstand push-up" loading="lazy" decoding="async">
   </div>
   <div class="pre-apply-strip-item">
-    <img src="Images/pic3.JPG" alt="Gym training" loading="lazy">
+    <img src="Images/pic3.JPG" alt="Gym training" loading="lazy" decoding="async">
   </div>
 </div>
 
@@ -3031,9 +3024,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 })();
 
 // ═══════════════════════════════════════
-// APPLY NOW AURA (Nav CTA button glow)
+// APPLY NOW AURA (Nav CTA button glow) — desktop only
 // ═══════════════════════════════════════
 (function() {
+  // Skip on mobile — saves significant CPU
+  if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   var btn = document.querySelector('.nav-cta');
   var canvas = document.getElementById('aura-canvas');
   if (!btn || !canvas) return;
@@ -3160,9 +3155,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 })();
 
 // ═══════════════════════════════════════
-// AMBIENT FIRE PARTICLES
+// AMBIENT FIRE PARTICLES — desktop only
 // ═══════════════════════════════════════
 (function() {
+  // Skip on mobile — saves significant CPU/battery
+  if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   var canvas = document.getElementById('fire-canvas');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
@@ -3185,7 +3182,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   window.addEventListener('resize', updateTrainingRect);
   setTimeout(updateTrainingRect, 500);
 
-  var NUM=19, particles=[];
+  var NUM=10, particles=[];
   function FireParticle(forceNear) {
     this.forceNearTraining=forceNear||false;
     this.reset();
@@ -3246,7 +3243,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     ctx.fillStyle='rgba(255,240,200,'+(a*0.85)+')'; ctx.fill();
   };
   for(var i=0;i<NUM;i++) particles.push(new FireParticle(false));
-  for(var i=0;i<4;i++) particles.push(new FireParticle(true));
+  for(var i=0;i<2;i++) particles.push(new FireParticle(true));
   function loop() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
     for(var i=0;i<particles.length;i++){particles[i].update();particles[i].draw();}
@@ -3424,130 +3421,135 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 // ═══════════════════════════════════════
 // BEFORE/AFTER SLIDER TOGGLE (videos AND images)
 // ═══════════════════════════════════════
-document.addEventListener('DOMContentLoaded', function() {
 
-  // Global: pause all BA slider videos and restore their play overlays
-  function pauseAllSliders(exceptSlider) {
-    document.querySelectorAll('.ba-slider').forEach(function(s) {
-      if (s === exceptSlider) return;
-      // Pause all videos in this slider
-      s.querySelectorAll('video').forEach(function(v) { v.pause(); });
-      // Restore the play overlay
-      var overlay = s.querySelector('.ba-play-overlay');
-      if (overlay) overlay.classList.remove('is-hidden');
-    });
+// Global: pause all BA slider videos and restore their play overlays
+function pauseAllSliders(exceptSlider) {
+  document.querySelectorAll('.ba-slider').forEach(function(s) {
+    if (s === exceptSlider) return;
+    s.querySelectorAll('video').forEach(function(v) { v.pause(); });
+    var overlay = s.querySelector('.ba-play-overlay');
+    if (overlay) overlay.classList.remove('is-hidden');
+  });
+}
+
+function initBASlider(slider) {
+  // Guard against double-init
+  if (slider.dataset.baInit === 'true') return;
+  slider.dataset.baInit = 'true';
+
+  var beforeWrap = slider.querySelector('.ba-before');
+  var afterWrap = slider.querySelector('.ba-after');
+  var toggle = slider.querySelector('.ba-toggle');
+
+  if (!beforeWrap || !afterWrap || !toggle) return;
+
+  var beforeVideo = beforeWrap.querySelector('video');
+  var afterVideo = afterWrap.querySelector('video');
+  var isVideoSlider = !!(beforeVideo && afterVideo);
+
+  // Inject play button overlay for video sliders
+  var playOverlay = slider.querySelector('.ba-play-overlay');
+  if (isVideoSlider && !playOverlay) {
+    playOverlay = document.createElement('div');
+    playOverlay.className = 'ba-play-overlay';
+    playOverlay.innerHTML = '<div class="ba-play-circle"><div class="ba-play-icon"></div></div>';
+    slider.appendChild(playOverlay);
   }
 
-  document.querySelectorAll('.ba-slider').forEach(function(slider) {
-    var beforeWrap = slider.querySelector('.ba-before');
-    var afterWrap = slider.querySelector('.ba-after');
-    var toggle = slider.querySelector('.ba-toggle');
+  slider.style.position = 'relative';
+  slider.style.overflow = 'hidden';
 
-    if (!beforeWrap || !afterWrap || !toggle) return;
+  [beforeWrap, afterWrap].forEach(function(wrap) {
+    wrap.style.position = 'absolute';
+    wrap.style.inset = '0';
+    wrap.style.width = '100%';
+    wrap.style.height = '100%';
+    wrap.style.transition = 'opacity 0.3s ease';
+  });
 
-    var beforeVideo = beforeWrap.querySelector('video');
-    var afterVideo = afterWrap.querySelector('video');
-    var isVideoSlider = !!(beforeVideo && afterVideo);
+  function safePlay(video) {
+    if (!video) return;
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    if (typeof window.activateVideo === 'function') window.activateVideo(video);
+    var p = video.play();
+    if (p) p.catch(function() { video.load(); video.play().catch(function(){}); });
+  }
 
-    // Inject play button overlay for video sliders
-    var playOverlay = null;
+  var userInitiated = false;
+
+  function showWrap(activeWrap, inactiveWrap, activeVideo, inactiveVideo) {
+    activeWrap.classList.add('is-active');
+    inactiveWrap.classList.remove('is-active');
+    activeWrap.style.opacity = '1'; activeWrap.style.visibility = 'visible'; activeWrap.style.pointerEvents = 'auto'; activeWrap.style.zIndex = '2';
+    inactiveWrap.style.opacity = '0'; inactiveWrap.style.visibility = 'hidden'; inactiveWrap.style.pointerEvents = 'none'; inactiveWrap.style.zIndex = '1';
     if (isVideoSlider) {
-      playOverlay = document.createElement('div');
-      playOverlay.className = 'ba-play-overlay';
-      playOverlay.innerHTML = '<div class="ba-play-circle"><div class="ba-play-icon"></div></div>';
-      slider.appendChild(playOverlay);
-    }
-
-    slider.style.position = 'relative';
-    slider.style.overflow = 'hidden';
-
-    [beforeWrap, afterWrap].forEach(function(wrap) {
-      wrap.style.position = 'absolute';
-      wrap.style.inset = '0';
-      wrap.style.width = '100%';
-      wrap.style.height = '100%';
-      wrap.style.transition = 'opacity 0.3s ease';
-    });
-
-    function safePlay(video) {
-      if (!video) return;
-      video.muted = true;
-      video.playsInline = true;
-      video.loop = true;
-      if (typeof window.activateVideo === 'function') window.activateVideo(video);
-      var p = video.play();
-      if (p) p.catch(function() { video.load(); video.play().catch(function(){}); });
-    }
-
-    // userInitiated tracks whether the user has clicked the toggle
-    var userInitiated = false;
-
-    function showWrap(activeWrap, inactiveWrap, activeVideo, inactiveVideo) {
-      activeWrap.classList.add('is-active');
-      inactiveWrap.classList.remove('is-active');
-      activeWrap.style.opacity = '1'; activeWrap.style.visibility = 'visible'; activeWrap.style.pointerEvents = 'auto'; activeWrap.style.zIndex = '2';
-      inactiveWrap.style.opacity = '0'; inactiveWrap.style.visibility = 'hidden'; inactiveWrap.style.pointerEvents = 'none'; inactiveWrap.style.zIndex = '1';
-      if (isVideoSlider) {
-        if (inactiveVideo) inactiveVideo.pause();
-        // Only play if user explicitly toggled — NOT on page init
-        if (userInitiated && activeVideo) {
-          requestAnimationFrame(function() { activeVideo.currentTime = 0; safePlay(activeVideo); });
-        }
+      if (inactiveVideo) inactiveVideo.pause();
+      if (userInitiated && activeVideo) {
+        requestAnimationFrame(function() { activeVideo.currentTime = 0; safePlay(activeVideo); });
       }
     }
+  }
 
-    function showBefore() {
-      slider.dataset.view = 'before';
-      showWrap(beforeWrap, afterWrap, beforeVideo, afterVideo);
-      toggle.textContent = 'SEE AFTER';
-      toggle.classList.add('is-before');
-      toggle.classList.remove('is-after');
-    }
+  function showBefore() {
+    slider.dataset.view = 'before';
+    showWrap(beforeWrap, afterWrap, beforeVideo, afterVideo);
+    toggle.textContent = 'SEE AFTER';
+    toggle.classList.add('is-before');
+    toggle.classList.remove('is-after');
+  }
 
-    function showAfter() {
-      slider.dataset.view = 'after';
-      showWrap(afterWrap, beforeWrap, afterVideo, beforeVideo);
-      toggle.textContent = 'SEE BEFORE';
-      toggle.classList.remove('is-before');
-      toggle.classList.add('is-after');
-    }
+  function showAfter() {
+    slider.dataset.view = 'after';
+    showWrap(afterWrap, beforeWrap, afterVideo, beforeVideo);
+    toggle.textContent = 'SEE BEFORE';
+    toggle.classList.remove('is-before');
+    toggle.classList.add('is-after');
+  }
 
-    if (isVideoSlider) {
-      beforeVideo.loop = true;
-      afterVideo.loop = true;
-    }
+  if (isVideoSlider) {
+    beforeVideo.loop = true;
+    afterVideo.loop = true;
+  }
 
-    toggle.addEventListener('click', function(e) {
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    userInitiated = true;
+    pauseAllSliders(slider);
+    if (playOverlay) playOverlay.classList.add('is-hidden');
+    if (slider.dataset.view === 'before') showAfter();
+    else showBefore();
+  });
+
+  if (playOverlay) {
+    playOverlay.addEventListener('click', function(e) {
       e.preventDefault(); e.stopPropagation();
       userInitiated = true;
       pauseAllSliders(slider);
-      if (playOverlay) playOverlay.classList.add('is-hidden');
-      if (slider.dataset.view === 'before') showAfter();
-      else showBefore();
+      playOverlay.classList.add('is-hidden');
+      var activeVideo = slider.querySelector('.ba-video.is-active video');
+      if (activeVideo) {
+        activeVideo.currentTime = 0;
+        safePlay(activeVideo);
+      }
     });
+  }
 
-    // Play overlay click — start the active video
-    if (playOverlay) {
-      playOverlay.addEventListener('click', function(e) {
-        e.preventDefault(); e.stopPropagation();
-        userInitiated = true;
-        pauseAllSliders(slider);
-        playOverlay.classList.add('is-hidden');
-        var activeVideo = slider.querySelector('.ba-video.is-active video');
-        if (activeVideo) {
-          activeVideo.currentTime = 0;
-          safePlay(activeVideo);
-        }
-      });
-    }
+  // Init: respect which wrap has is-active in the HTML
+  if (afterWrap.classList.contains('is-active')) {
+    showAfter();
+  } else {
+    showBefore();
+  }
+}
 
-    // Init: respect which wrap has is-active in the HTML
-    if (afterWrap.classList.contains('is-active')) {
-      showAfter();
-    } else {
-      showBefore();
-    }
-  });
+// Expose globally for the auto-scroll duplicator
+window.initBASlider = initBASlider;
+
+// Init all BA sliders on page load
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.ba-slider').forEach(initBASlider);
 });
 
 // ═══════════════════════════════════════
@@ -3586,10 +3588,7 @@ document.addEventListener('DOMContentLoaded', function() {
       inner.querySelectorAll('iframe[data-src]').forEach(window.activateIframe);
     }
 
-    // Activate lazy video sources in cloned content
-    if (typeof window.activateVideo === 'function') {
-      inner.querySelectorAll('video').forEach(window.activateVideo);
-    }
+    // DON'T eagerly activate video sources — let the lazy loader + play overlay handle them on demand
 
     if (typeof window.primeScrollerVideo === 'function') {
       inner.querySelectorAll('video').forEach(window.primeScrollerVideo);
@@ -3600,6 +3599,11 @@ document.addEventListener('DOMContentLoaded', function() {
         card.dataset.videoReady = '';
         window.registerTestimonialCard(card);
       });
+    }
+
+    // Re-initialize BA slider toggle logic on cloned sliders
+    if (typeof window.initBASlider === 'function') {
+      inner.querySelectorAll('.ba-slider').forEach(window.initBASlider);
     }
 
     var speed = inner.closest('.results-video-scroll') ? 0.55 : 0.6;
