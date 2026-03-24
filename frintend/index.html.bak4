@@ -2017,29 +2017,6 @@
     }
   }
 
-  
-  /* ══════════════════════════════════════
-     TESTIMONIAL VIDEO — ANTI-BLACK-FLASH
-  ══════════════════════════════════════ */
-  /* Keep video invisible until first frame is painted, so poster shows through */
-  .tvcard-video-wrap video.tvcard-video {
-    background: transparent;
-  }
-  .tvcard-video-wrap video.tvcard-video:not([data-has-frames]) {
-    opacity: 0;
-  }
-  .tvcard-video-wrap video.tvcard-video[data-has-frames] {
-    opacity: 1;
-    transition: opacity 0.15s ease;
-  }
-  /* Poster image as background fallback on the wrap itself */
-  .tvcard-video-wrap[data-poster] {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #000;
-  }
-
   </style>
 </head>
 <body>
@@ -2454,7 +2431,7 @@
             <!-- 1. KENTO -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/kento.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/kento.jpg">
             <source data-src="Testimonials/kento.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2467,7 +2444,7 @@
       <!-- 2. JOSH -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/josh.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/josh.jpg">
             <source data-src="Testimonials/josh.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2480,7 +2457,7 @@
       <!-- 3. STEVEN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/steven.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/steven.jpg">
             <source data-src="Testimonials/steven.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2493,7 +2470,7 @@
       <!-- 4. SAM -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/sam.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/sam.jpg">
             <source data-src="Testimonials/sam.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2506,7 +2483,7 @@
       <!-- 5. TRISTAN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/tristan.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/tristan.jpg">
             <source data-src="Testimonials/tristan.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2519,7 +2496,7 @@
       <!-- 6. REID -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/reid.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/reid.jpg">
             <source data-src="Testimonials/reid.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2532,7 +2509,7 @@
       <!-- 7. GUS -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/gus.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/gus.jpg">
             <source data-src="Testimonials/gus.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2545,7 +2522,7 @@
       <!-- 8. TORYN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/toryn.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/toryn.jpg">
             <source data-src="Testimonials/toryn.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2558,7 +2535,7 @@
       <!-- 9. JOHN -->
       <div class="tvcard">
         <div class="tvcard-video-wrap">
-          <video class="tvcard-video" muted playsinline preload="metadata" poster="Testimonials/Thumbnails/john.jpg">
+          <video class="tvcard-video" muted playsinline preload="none" poster="Testimonials/Thumbnails/john.jpg">
             <source data-src="Testimonials/john.mp4" type="video/mp4">
           </video>
           <div class="tcard-play-overlay">
@@ -2972,7 +2949,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
       if (video === activeVideo) return;
       video.pause();
       video.currentTime = 0;
-      video.removeAttribute('data-has-frames');
       syncTestimonialUi(card);
     });
   }
@@ -2993,7 +2969,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 
       if (playing) {
         video.pause();
-        video.removeAttribute('data-has-frames');
         syncTestimonialUi(card);
         return;
       }
@@ -3001,58 +2976,15 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
       // Ensure lazy-loaded sources are injected before playing
       if (typeof window.activateVideo === 'function') window.activateVideo(video);
       video.currentTime = 0;
-
-      // Start muted first — mobile browsers always allow muted autoplay.
-      // This guarantees a single tap works every time.
-      video.muted = true;
-
-      // Mark frames ready once the video actually has pixels to show
-      function onFrameReady() {
-        video.setAttribute('data-has-frames', '');
-        // Now try to unmute for sound
-        video.muted = false;
-        syncTestimonialUi(card);
-      }
-
-      // If video already has enough data, mark frames immediately
-      if (video.readyState >= 3) {
-        video.setAttribute('data-has-frames', '');
-      } else {
-        video.addEventListener('playing', function() {
-          // Small delay to ensure first frame is painted
-          requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-              onFrameReady();
-            });
-          });
-        }, { once: true });
-      }
-
+      video.muted = false;
       var playPromise = video.play();
-      if (playPromise && typeof playPromise.then === 'function') {
-        playPromise.then(function() {
-          // Play succeeded — try unmuting
-          if (video.readyState >= 3) {
-            video.setAttribute('data-has-frames', '');
-          }
-          video.muted = false;
-          syncTestimonialUi(card);
-        }).catch(function() {
-          // Shouldn't happen since we start muted, but just in case
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function() {
           video.muted = true;
-          video.play().then(function() {
-            video.setAttribute('data-has-frames', '');
-            syncTestimonialUi(card);
-          }).catch(function() {
-            syncTestimonialUi(card);
-          });
-        });
+          return video.play().catch(function() { syncTestimonialUi(card); });
+        }).finally(function() { syncTestimonialUi(card); });
         return;
       }
-
-      // Fallback for browsers that don't return a promise
-      video.setAttribute('data-has-frames', '');
-      video.muted = false;
       syncTestimonialUi(card);
     }
 
@@ -3091,15 +3023,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   window.registerTestimonialCard = registerTestimonialCard;
 
   document.querySelectorAll('.tvcard').forEach(registerTestimonialCard);
-  // Set poster as background on video wraps to prevent black flash
-  document.querySelectorAll('.tvcard-video-wrap').forEach(function(wrap) {
-    var video = wrap.querySelector('video[poster]');
-    if (video && video.poster) {
-      wrap.setAttribute('data-poster', '');
-      wrap.style.backgroundImage = 'url(' + video.poster + ')';
-    }
-  });
-
 
   // Capture first frame as poster
   function captureFirstFrame(video) {
