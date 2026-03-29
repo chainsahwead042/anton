@@ -1646,7 +1646,25 @@
     .coach-photo-col { order: 2; }
     #coach { grid-template-columns: 1fr; gap: 32px; }
     .coach-info-stack { order: 1; }
+codex/fix-video-playback-in-testimonials-msaig6
+    #coach > .result-card {
+      order: 2;
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: calc(50% - 50vw);
+      aspect-ratio: auto;
+      min-height: 100vh;
+    }
+    #coach > .result-card .ba-slider {
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      aspect-ratio: auto;
+      border-radius: 0;
+    }
+    
     #coach > .result-card { order: 2; }
+ main
     .system-grid { grid-template-columns: 1fr; }
     .results-grid { grid-template-columns: 1fr; gap: 22px; }
     .testimonials-grid { grid-template-columns: 1fr; }
